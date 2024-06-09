@@ -14,7 +14,7 @@ namespace UnitTests
 			_connectionHandler = connectionHandler;
 		}
 		[Fact]
-		public void TestGetAvailableCards()
+		public async Task TestGetAvailableCards()
 		{
 			//Arrange
 			var mock = new Mock<IConnectionHandler>();
@@ -22,9 +22,13 @@ namespace UnitTests
 			mock.Setup(db => db.DBGetConnectionHandler<CardModel>(sql, "ConnectionValue")).ReturnsAsync(new List<CardModel>(SampleList()));
 
 			//Act
-			
+			var actualList = await mock.Object.DBGetConnectionHandler<CardModel>(sql, "ConnectionValue");
+			var expected = SampleList();
+
 
 			//Assert
+
+			Assert.Equal(actualList, expected);
 		}
 
 		private List<CardModel> SampleList()
@@ -36,9 +40,11 @@ namespace UnitTests
 					id = 1,
 					name = "spring rifle",
 					type = "machine",
-
+					attack = 2,
+					defense = 1
 				}
 			};
+			return output;
 		}
 	}
 }
