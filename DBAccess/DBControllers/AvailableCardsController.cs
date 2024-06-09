@@ -4,19 +4,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Models;
+using NPOI.SS.Formula.Functions;
 
 namespace DBAccess.DBControllers
 {
 	public class AvailableCardsController
 	{
-		private readonly IConfiguration _configuration;
-		public AvailableCardsController(IConfiguration configuration) 
+		private IConfiguration _configuration;
+		private IConnectionHandler _connectionHandler;
+		AvailableCardsController(IConfiguration configuration, IConnectionHandler connectionHandler)
 		{
 			_configuration = configuration;
+			_connectionHandler = connectionHandler;
 		}
+
 		public string CnnVal()
 		{
 			return _configuration.GetConnectionString("DBAccessHandler");
 		}
+
+		public async Task<List<CardModel>>SeeAllCardOptions() 
+		{
+			string sql = "Select * from dbo.AvailableCards";
+			var allCards = await _connectionHandler.DBGetConnectionHandler<CardModel>(sql, CnnVal());
+			return allCards;
+		}
+
+
 	}
 }
