@@ -31,6 +31,13 @@ namespace DBAccess.DBControllers
 			return allCards;
 		}
 
+		public async Task<List<CardModel>> SeeCardOptionsByType(string param)
+		{
+			string sql = "Select * from dbo.AvailableCards where type = @param";
+			var allCards = await _connectionHandler.DBGetConnectionHandlerByType<CardModel>(sql, CnnVal(), param);
+			return allCards;
+		}
+
 
 	}
 }
