@@ -13,7 +13,7 @@ namespace DBAccess.DBControllers
 	{
 		private IConfiguration _configuration;
 		private IConnectionHandler _connectionHandler;
-		AvailableCardsController(IConfiguration configuration, IConnectionHandler connectionHandler)
+		public AvailableCardsController(IConfiguration configuration, IConnectionHandler connectionHandler)
 		{
 			_configuration = configuration;
 			_connectionHandler = connectionHandler;
@@ -24,10 +24,12 @@ namespace DBAccess.DBControllers
 			return _configuration.GetConnectionString("DBAccessHandler");
 		}
 
+
 		public async Task<List<CardModel>> SeeAllCardOptions()
 		{
+			string connectionString = CnnVal();
 			string sql = "Select * from dbo.AvailableCards";
-			var allCards = await _connectionHandler.DBGetConnectionHandler<CardModel>(sql, CnnVal());
+			var allCards = await _connectionHandler.DBGetConnectionHandler<CardModel>(sql, connectionString);
 			return allCards;
 		}
 
