@@ -1,14 +1,19 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 
 namespace APILayer.Controllers
 {
+	[ApiController]
+	[Route("/api/[controller]")]
 	public class AvailableCardsAPI : Controller
 	{
-		// GET: AvailableCardsAPI
-		public ActionResult Index()
+		// GET: ViewAllCards
+		[Route("GetAllCards")]
+		[HttpGet]
+		public async Task<List<CardModel>>GetAllCards()
 		{
-			return View();
+			throw new NotImplementedException();
 		}
 
 		// GET: AvailableCardsAPI/Details/5
