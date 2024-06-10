@@ -9,7 +9,7 @@ using NPOI.SS.Formula.Functions;
 
 namespace DBAccess.DBControllers
 {
-	public class AvailableCardsController
+	public class AvailableCardsController : IAvailableCardsController
 	{
 		private IConfiguration _configuration;
 		private IConnectionHandler _connectionHandler;
@@ -24,7 +24,7 @@ namespace DBAccess.DBControllers
 			return _configuration.GetConnectionString("DBAccessHandler");
 		}
 
-		public async Task<List<CardModel>>SeeAllCardOptions() 
+		public async Task<List<CardModel>> SeeAllCardOptions()
 		{
 			string sql = "Select * from dbo.AvailableCards";
 			var allCards = await _connectionHandler.DBGetConnectionHandler<CardModel>(sql, CnnVal());

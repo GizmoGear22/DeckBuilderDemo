@@ -1,4 +1,5 @@
 using DBAccess;
+using DBAccess.DBControllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IConnectionHandler, ConnectionHandler>();
+builder.Services.AddTransient<IAvailableCardsController, AvailableCardsController>();
 
 var app = builder.Build();
 

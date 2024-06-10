@@ -4,6 +4,9 @@ using DBAccess;
 using Models;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
+using DBAccess.DBControllers;
+using System.Runtime.InteropServices;
+using Castle.Core.Configuration;
 
 namespace UnitTests
 {
@@ -11,7 +14,7 @@ namespace UnitTests
 	{
 
 		[Fact]
-		public async Task TestGetAvailableCards()
+		public async Task GetAllConnectionHandlerTest()
 		{
 			//Arrange
 			var mock = new Mock<IConnectionHandler>();
@@ -48,6 +51,21 @@ namespace UnitTests
 			Assert.Equal(cost1, cost2);
 			Assert.Equal(attack1, attack2);
 			Assert.Equal(defense1, defense2);
+			mock.Verify(db => db.DBGetConnectionHandler<CardModel>(sql, It.IsAny<string>()));
+		}
+
+		[Fact]
+		public async Task AllAvailableCardsHandlerTest()
+		{
+			//arrange
+			var mock = new Mock<IConnectionHandler>();
+			mock.Setup(db => db.DBGetConnectionHandler<CardModel>(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(SampleList());
+
+
+			//act
+			AvailableCardsController controller = new AvailableCardsController(mock.Object);
+
+			//assert
 		}
 
 		public List<CardModel> SampleList()
@@ -61,6 +79,15 @@ namespace UnitTests
 					type = "machine",
 					attack = 2,
 					defense = 1
+				},
+
+				new CardModel
+				{
+					id = 2,
+					name = "fire flask",
+					type = "concoction",
+					attack = 3,
+					defense = 0
 				}
 			};
 			return output;
