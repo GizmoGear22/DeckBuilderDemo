@@ -41,11 +41,12 @@ namespace DBAccess
 			}
 		}
 
-		public async Task DBPostConnectionHandler(string sqlString, object param)
+		public async Task<int> DBPostConnectionHandler(string sqlString, object param)
 		{
 			using (var connection = new SqlConnection(CnnVal()))
 			{
 				var data = await connection.ExecuteAsync(sqlString, param);
+				return data;
 			}
 		}
 	}

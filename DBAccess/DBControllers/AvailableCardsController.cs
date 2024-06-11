@@ -49,8 +49,8 @@ namespace DBAccess.DBControllers
 				attack = model.attack,
 				defense = model.defense
 			};
-			var postCard = await _connectionHandler.DBPostConnectionHandler(sql, param);
-			return postCard;
+			var data = await _connectionHandler.DBPostConnectionHandler(sql, param);
+			return data;
 		}
 
 

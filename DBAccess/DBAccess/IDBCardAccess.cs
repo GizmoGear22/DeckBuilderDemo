@@ -9,6 +9,6 @@ namespace DBAccess
 		string CnnVal();
 		Task<List<T>> DBGetConnectionHandler<T>(string sqlString);
 		Task<List<T>> DBGetConnectionHandlerByType<T>(string sqlString, CardType param);
-		Task DBPostConnectionHandler(string sqlString, object param);
+		Task<int> DBPostConnectionHandler(string sqlString, object param);
 	}
 }

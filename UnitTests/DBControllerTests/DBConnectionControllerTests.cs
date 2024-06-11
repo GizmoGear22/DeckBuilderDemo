@@ -8,10 +8,13 @@ using Moq;
 using DBAccess.DBControllers;
 using Models;
 using DBAccess;
+using Dapper;
 using Microsoft.Extensions.Configuration;
 using System.Xml.Schema;
 using System.Collections;
 using System.Xml.Linq;
+using System.Reflection;
+using System.Net.Quic;
 
 namespace UnitTests.DBControllerTests
 {
@@ -67,11 +70,34 @@ namespace UnitTests.DBControllerTests
 		public async Task DBPostConnectionHandlerTest()
 		{
 			//Arrange
-			_connectionHandlerMock.Setup(db => db.DBPostConnectionHandler)
+			CardModel model = new CardModel
+			{
+				id = 1,
+				name = "spring rifle",
+				type = CardType.machine,
+				attack = 2,
+				defense = 1
+			};
+
+			string sql = "INSERT INTO [dbo].[AvailableCards]([id],[name],[type],[cost],[attack],[defense]) Values (@id, @name, @type, @attack, @defense";
+			var param =
+			new
+			{
+				id = model.id,
+				name = model.name,
+				type = model.type,
+				cost = model.cost,
+				attack = model.attack,
+				defense = model.defense
+			};
+			_connectionHandlerMock.Setup(db => db.DBPostConnectionHandler(sql, param)).ReturnsAsync(1);
 
 			//Act
+			var expected = 1;
+			var result = await _availableCardsController.PostNewCardsToDB(model);
 
 			//Assert
+			_connectionHandlerMock.Verify(db =>  db.DBPostConnectionHandler(It.IsAny<string>(), It.IsAny<string>()), Times.Once());
 		}
 
 	}
