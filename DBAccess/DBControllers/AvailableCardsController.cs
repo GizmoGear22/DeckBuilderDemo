@@ -11,8 +11,8 @@ namespace DBAccess.DBControllers
 {
 	public class AvailableCardsController : IAvailableCardsController
 	{
-		private IConnectionHandler _connectionHandler;
-		public AvailableCardsController(IConnectionHandler connectionHandler)
+		private IDBCardAccess _connectionHandler;
+		public AvailableCardsController(IDBCardAccess connectionHandler)
 		{
 			_connectionHandler = connectionHandler;
 		}

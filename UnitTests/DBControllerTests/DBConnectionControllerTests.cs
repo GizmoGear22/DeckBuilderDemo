@@ -18,21 +18,23 @@ namespace UnitTests.DBControllerTests
 	public class DBConnectionControllerTests
 	{
 		private readonly IAvailableCardsController _availableCardsController;
-		private readonly Mock<IConnectionHandler> _connectionHandlerMock;
+		private readonly Mock<IDBCardAccess> _connectionHandlerMock;
 
 		public DBConnectionControllerTests()
 		{
-			_connectionHandlerMock = new Mock<IConnectionHandler>();
+			_connectionHandlerMock = new Mock<IDBCardAccess>();
 			_availableCardsController = new AvailableCardsController(_connectionHandlerMock.Object);
 		}
+
+		SampleCardLists cardLists = new SampleCardLists();
 
 		[Fact]
 		public async Task SeeAllCardOptionsTest()
 		{
+			var sampleAllCards = cardLists.SampleList(); 
 			//Arrange
-			var cardList = SampleList();
 
-			_connectionHandlerMock.Setup(db => db.DBGetConnectionHandler<CardModel>("Select * from dbo.AvailableCards")).ReturnsAsync(new List<CardModel>(cardList));
+			_connectionHandlerMock.Setup(db => db.DBGetConnectionHandler<CardModel>("Select * from dbo.AvailableCards")).ReturnsAsync(new List<CardModel>(sampleAllCards));
 
 			//Act
 			var result = await _availableCardsController.SeeAllCardOptions();
@@ -41,7 +43,7 @@ namespace UnitTests.DBControllerTests
 			//Assert
 
 			Assert.NotNull(result);
-			Assert.Equal(cardList, result);
+			Assert.Equal(sampleAllCards, result);
 
 		}
 
@@ -49,7 +51,7 @@ namespace UnitTests.DBControllerTests
 		public async Task SeeAllCardOptionsByTypeTest()
 		{
 			//Arrange
-			var cardList =SampleListByType();
+			var cardList = cardLists.SampleListByType();
 			_connectionHandlerMock.Setup(db => db.DBGetConnectionHandlerByType<CardModel>("Select * from dbo.AvailableCards where type = @param", "machine")).ReturnsAsync(new List<CardModel>(cardList));
 
 			//Act

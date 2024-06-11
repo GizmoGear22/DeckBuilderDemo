@@ -128,10 +128,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBAccess\IDBCardAccess.cs" />
     <Compile Include="DBControllers\IAvailableCardsController.cs" />
-    <Compile Include="DBHandlers\ConnectionHandler.cs" />
+    <Compile Include="DBAccess\DBCardAccess.cs" />
     <Compile Include="DBControllers\AvailableCardsController.cs" />
-    <Compile Include="DBHandlers\IConnectionHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

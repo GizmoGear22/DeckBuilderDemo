@@ -10,10 +10,10 @@ using Models;
 
 namespace DBAccess
 {
-	public class ConnectionHandler : IConnectionHandler
+	public class DBCardAccess : IDBCardAccess
 	{
 		private readonly IConfiguration _configuration;
-		ConnectionHandler(IConfiguration configuration)
+		DBCardAccess(IConfiguration configuration)
 		{
 			_configuration = configuration;
 		}

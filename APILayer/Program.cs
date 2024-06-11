@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient<IConnectionHandler, ConnectionHandler>();
+builder.Services.AddTransient<IDBCardAccess, DBCardAccess>();
 builder.Services.AddTransient<IAvailableCardsController, AvailableCardsController>();
 
 var app = builder.Build();
