@@ -16,4 +16,5 @@ namespace Models
 		public int attack {  get; set; }
 		public int defense { get; set; }
 	}
+
 }

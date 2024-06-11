@@ -52,6 +52,20 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APIPostLogic\" />
+    <Folder Include="Utility\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBAccess\DBAccess.csproj">
+      <Project>{6bcba36e-622e-4e65-9fff-c1fcfc0a917f}</Project>
+      <Name>DBAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{dbf60156-8d76-4c63-acc9-0bb743808795}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

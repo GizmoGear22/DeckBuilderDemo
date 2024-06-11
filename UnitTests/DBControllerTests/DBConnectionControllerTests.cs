@@ -10,20 +10,20 @@ using Models;
 using DBAccess;
 using Microsoft.Extensions.Configuration;
 using System.Xml.Schema;
+using System.Collections;
+using System.Xml.Linq;
 
 namespace UnitTests.DBControllerTests
 {
 	public class DBConnectionControllerTests
 	{
 		private readonly IAvailableCardsController _availableCardsController;
-		private readonly Mock<IConfiguration> _configurationMock;
 		private readonly Mock<IConnectionHandler> _connectionHandlerMock;
 
 		public DBConnectionControllerTests()
 		{
-			_configurationMock = new Mock<IConfiguration>();
 			_connectionHandlerMock = new Mock<IConnectionHandler>();
-			_availableCardsController = new AvailableCardsController(_configurationMock.Object, _connectionHandlerMock.Object);
+			_availableCardsController = new AvailableCardsController(_connectionHandlerMock.Object);
 		}
 
 		[Fact]
@@ -32,15 +32,32 @@ namespace UnitTests.DBControllerTests
 			//Arrange
 			var cardList = SampleList();
 
-			//_configurationMock.Setup(x => x.GetSection("ConnectionStrings:DefaultConnection")["YourConnectionString"]).Returns("YourConnectionString");
-			_connectionHandlerMock.Setup(db => db.DBGetConnectionHandler<CardModel>(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(new List<CardModel>(cardList));
+			_connectionHandlerMock.Setup(db => db.DBGetConnectionHandler<CardModel>("Select * from dbo.AvailableCards")).ReturnsAsync(new List<CardModel>(cardList));
 
 			//Act
 			var result = await _availableCardsController.SeeAllCardOptions();
+			var result2 = SampleListByType();
 
 			//Assert
 
 			Assert.NotNull(result);
+			Assert.Equal(cardList, result);
+
+		}
+
+		[Fact]
+		public async Task SeeAllCardOptionsByTypeTest()
+		{
+			//Arrange
+			var cardList =SampleListByType();
+			_connectionHandlerMock.Setup(db => db.DBGetConnectionHandlerByType<CardModel>("Select * from dbo.AvailableCards where type = @param", "machine")).ReturnsAsync(new List<CardModel>(cardList));
+
+			//Act
+
+			var result = await _availableCardsController.SeeCardOptionsByType("machine");
+
+			//Assert
+
 			Assert.Equal(cardList, result);
 
 		}
@@ -62,7 +79,7 @@ namespace UnitTests.DBControllerTests
 				{
 					id = 2,
 					name = "fire flask",
-					type = "concoction",
+					type = "pyro",
 					attack = 3,
 					defense = 0
 				},
@@ -77,6 +94,31 @@ namespace UnitTests.DBControllerTests
 				}
 			};
 			return output;
+		}
+
+		public List<CardModel> SampleListByType()
+		{
+			var output = new List<CardModel>
+			{
+				new CardModel
+				{
+					id = 1,
+					name = "spring rifle",
+					type = "machine",
+					attack = 2,
+					defense = 1
+				},
+				new CardModel
+				{
+					id = 3,
+					name = "Gear Grinder",
+					type = "machine",
+					attack = 4,
+					defense = 1
+				}
+			};
+			return output;
+
 		}
 
 	}
