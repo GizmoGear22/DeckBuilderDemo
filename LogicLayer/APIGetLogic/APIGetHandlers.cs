@@ -9,7 +9,7 @@ using Models;
 
 namespace LogicLayer.APIGetLogic
 {
-	public class APIGetHandlers
+	public class APIGetHandlers : IAPIGetHandlers
 	{
 		private readonly IAvailableCardsController _availableCardsController;
 		public APIGetHandlers(IAvailableCardsController availableCardsController)
@@ -22,7 +22,7 @@ namespace LogicLayer.APIGetLogic
 			return data.ToList();
 		}
 
-		public async Task<IEnumerable<CardModel>> GetAllCardsByType(string type)
+		public async Task<IEnumerable<CardModel>> GetAllCardsByType(CardType type)
 		{
 			var data = await _availableCardsController.SeeCardOptionsByType(type);
 			return data.ToList();

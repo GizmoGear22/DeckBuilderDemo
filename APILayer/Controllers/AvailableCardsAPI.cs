@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using LogicLayer;
+using LogicLayer.APIGetLogic;
 
 namespace APILayer.Controllers
 {
@@ -8,14 +10,21 @@ namespace APILayer.Controllers
 	[Route("/api/[controller]")]
 	public class AvailableCardsAPI : Controller
 	{
+		private readonly IAPIGetHandlers _apiGetHandlers;
+		public AvailableCardsAPI(IAPIGetHandlers aPIGetHandlers) 
+		{
+			_apiGetHandlers = aPIGetHandlers;
+		}
+
 		// GET: ViewAllCards
 		[Route("GetAllCards")]
 		[HttpGet]
 		public async Task<List<CardModel>>GetAllCards()
 		{
-			throw new NotImplementedException();
+			var data = await _apiGetHandlers.GetAllCards();
+			return data.ToList();
 		}
-
+/*
 		// GET: AvailableCardsAPI/Details/5
 		public ActionResult Details(int id)
 		{
@@ -84,5 +93,6 @@ namespace APILayer.Controllers
 				return View();
 			}
 		}
+*/ 
 	}
 }

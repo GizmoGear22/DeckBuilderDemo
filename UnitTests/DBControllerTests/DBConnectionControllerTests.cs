@@ -38,7 +38,6 @@ namespace UnitTests.DBControllerTests
 
 			//Act
 			var result = await _availableCardsController.SeeAllCardOptions();
-			var result2 = SampleListByType();
 
 			//Assert
 
@@ -52,11 +51,11 @@ namespace UnitTests.DBControllerTests
 		{
 			//Arrange
 			var cardList = cardLists.SampleListByType();
-			_connectionHandlerMock.Setup(db => db.DBGetConnectionHandlerByType<CardModel>("Select * from dbo.AvailableCards where type = @param", "machine")).ReturnsAsync(new List<CardModel>(cardList));
+			_connectionHandlerMock.Setup(db => db.DBGetConnectionHandlerByType<CardModel>("Select * from dbo.AvailableCards where type = @param", CardType.machine)).ReturnsAsync(new List<CardModel>(cardList));
 
 			//Act
 
-			var result = await _availableCardsController.SeeCardOptionsByType("machine");
+			var result = await _availableCardsController.SeeCardOptionsByType(CardType.machine);
 
 			//Assert
 
@@ -64,63 +63,15 @@ namespace UnitTests.DBControllerTests
 
 		}
 
-		public List<CardModel> SampleList()
+		[Fact]
+		public async Task DBPostConnectionHandlerTest()
 		{
-			var output = new List<CardModel>
-			{
-				new CardModel
-				{
-					id = 1,
-					name = "spring rifle",
-					type = "machine",
-					attack = 2,
-					defense = 1
-				},
+			//Arrange
+			_connectionHandlerMock.Setup(db => db.DBPostConnectionHandler)
 
-				new CardModel
-				{
-					id = 2,
-					name = "fire flask",
-					type = "pyro",
-					attack = 3,
-					defense = 0
-				},
+			//Act
 
-				new CardModel
-				{
-					id = 3,
-					name = "Gear Grinder",
-					type = "machine",
-					attack = 4,
-					defense = 1
-				}
-			};
-			return output;
-		}
-
-		public List<CardModel> SampleListByType()
-		{
-			var output = new List<CardModel>
-			{
-				new CardModel
-				{
-					id = 1,
-					name = "spring rifle",
-					type = "machine",
-					attack = 2,
-					defense = 1
-				},
-				new CardModel
-				{
-					id = 3,
-					name = "Gear Grinder",
-					type = "machine",
-					attack = 4,
-					defense = 1
-				}
-			};
-			return output;
-
+			//Assert
 		}
 
 	}

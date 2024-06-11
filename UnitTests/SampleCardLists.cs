@@ -17,7 +17,7 @@ namespace UnitTests
 				{
 					id = 1,
 					name = "spring rifle",
-					type = "machine",
+					type = CardType.machine,
 					attack = 2,
 					defense = 1
 				},
@@ -26,7 +26,7 @@ namespace UnitTests
 				{
 					id = 2,
 					name = "fire flask",
-					type = "pyro",
+					type = CardType.pyro,
 					attack = 3,
 					defense = 0
 				},
@@ -35,7 +35,7 @@ namespace UnitTests
 				{
 					id = 3,
 					name = "Gear Grinder",
-					type = "machine",
+					type = CardType.machine	,
 					attack = 4,
 					defense = 1
 				}
@@ -51,7 +51,7 @@ namespace UnitTests
 				{
 					id = 1,
 					name = "spring rifle",
-					type = "machine",
+					type = CardType.machine,
 					attack = 2,
 					defense = 1
 				},
@@ -59,7 +59,7 @@ namespace UnitTests
 				{
 					id = 3,
 					name = "Gear Grinder",
-					type = "machine",
+					type = CardType.machine,
 					attack = 4,
 					defense = 1
 				}

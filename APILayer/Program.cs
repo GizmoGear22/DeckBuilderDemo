@@ -1,5 +1,6 @@
 using DBAccess;
 using DBAccess.DBControllers;
+using LogicLayer.APIGetLogic;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IDBCardAccess, DBCardAccess>();
 builder.Services.AddTransient<IAvailableCardsController, AvailableCardsController>();
+builder.Services.AddTransient<IAPIGetHandlers, APIGetHandlers>();
 
 var app = builder.Build();
 

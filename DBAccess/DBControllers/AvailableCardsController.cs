@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Models;
 using NPOI.SS.Formula.Functions;
+using Dapper;
 
 namespace DBAccess.DBControllers
 {
@@ -28,11 +29,28 @@ namespace DBAccess.DBControllers
 			return allCards;
 		}
 
-		public async Task<List<CardModel>> SeeCardOptionsByType(string param)
+		public async Task<List<CardModel>> SeeCardOptionsByType(CardType param)
 		{
 			string sql = "Select * from dbo.AvailableCards where type = @param";
 			var allCards = await _connectionHandler.DBGetConnectionHandlerByType<CardModel>(sql, param);
 			return allCards;
+		}
+
+		public async Task<int> PostNewCardsToDB(CardModel model)
+		{
+			string sql = "INSERT INTO [dbo].[AvailableCards]([id],[name],[type],[cost],[attack],[defense]) Values (@id, @name, @type, @attack, @defense";
+			var param = 
+			new
+			{
+				id = model.id,
+				name = model.name,
+				type = model.type,
+				cost = model.cost,
+				attack = model.attack,
+				defense = model.defense
+			};
+			var postCard = await _connectionHandler.DBPostConnectionHandler(sql, param);
+			return postCard;
 		}
 
 

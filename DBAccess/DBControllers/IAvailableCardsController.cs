@@ -7,6 +7,6 @@ namespace DBAccess.DBControllers
 	public interface IAvailableCardsController
 	{
 		Task<List<CardModel>> SeeAllCardOptions();
-		Task<List<CardModel>> SeeCardOptionsByType(string param);
+		Task<List<CardModel>> SeeCardOptionsByType(CardType param);
 	}
 }

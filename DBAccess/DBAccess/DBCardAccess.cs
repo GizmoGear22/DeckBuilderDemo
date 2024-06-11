@@ -13,7 +13,7 @@ namespace DBAccess
 	public class DBCardAccess : IDBCardAccess
 	{
 		private readonly IConfiguration _configuration;
-		DBCardAccess(IConfiguration configuration)
+		public DBCardAccess(IConfiguration configuration)
 		{
 			_configuration = configuration;
 		}
@@ -31,13 +31,21 @@ namespace DBAccess
 			}
 		}
 
-		public async Task<List<T>> DBGetConnectionHandlerByType<T>(string sqlString, string param)
+		public async Task<List<T>> DBGetConnectionHandlerByType<T>(string sqlString, CardType param)
 		{
 			using (var connection = new SqlConnection(CnnVal()))
 			{
 				var parameter = new { type = param };
 				var data = await connection.QueryAsync<T>(sqlString, parameter);
 				return data.ToList();
+			}
+		}
+
+		public async Task DBPostConnectionHandler(string sqlString, object param)
+		{
+			using (var connection = new SqlConnection(CnnVal()))
+			{
+				var data = await connection.ExecuteAsync(sqlString, param);
 			}
 		}
 	}

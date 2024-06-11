@@ -11,10 +11,19 @@ namespace Models
 	{
 		public int id { get; set; }
 		public string name { get; set; }
-		public string type { get; set; }
+		public CardType type { get; set; }
 		public int cost { get; set; }
 		public int attack {  get; set; }
 		public int defense { get; set; }
+	}
+
+	public enum CardType
+	{
+		machine,
+		pyro,
+		alchemy,
+		tesla,
+		bio
 	}
 
 }
