@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="APIGetLogic\APIGetHandlers.cs" />
     <Compile Include="APIGetLogic\IAPIGetHandlers.cs" />
+    <Compile Include="APIPostLogic\APIPostHandlers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -52,7 +53,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="APIPostLogic\" />
     <Folder Include="Utility\" />
   </ItemGroup>
   <ItemGroup>

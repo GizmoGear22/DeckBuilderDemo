@@ -15,6 +15,7 @@ using System.Collections;
 using System.Xml.Linq;
 using System.Reflection;
 using System.Net.Quic;
+using System.Text.RegularExpressions;
 
 namespace UnitTests.DBControllerTests
 {
@@ -90,14 +91,14 @@ namespace UnitTests.DBControllerTests
 				attack = model.attack,
 				defense = model.defense
 			};
-			_connectionHandlerMock.Setup(db => db.DBPostConnectionHandler(sql, param)).ReturnsAsync(1);
 
 			//Act
 			var expected = 1;
 			var result = await _availableCardsController.PostNewCardsToDB(model);
 
 			//Assert
-			_connectionHandlerMock.Verify(db =>  db.DBPostConnectionHandler(It.IsAny<string>(), It.IsAny<string>()), Times.Once());
+			_connectionHandlerMock.Verify(db =>  db.DBPostConnectionHandler(It.IsAny<string>(), It.IsAny<object>()), Times.Once());
+			Assert.Equal(expected, result);
 		}
 
 	}
