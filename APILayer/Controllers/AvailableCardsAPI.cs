@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using LogicLayer;
 using LogicLayer.APIGetLogic;
+using LogicLayer.APIPostLogic;
 
 namespace APILayer.Controllers
 {
@@ -11,9 +12,11 @@ namespace APILayer.Controllers
 	public class AvailableCardsAPI : Controller
 	{
 		private readonly IAPIGetHandlers _apiGetHandlers;
-		public AvailableCardsAPI(IAPIGetHandlers aPIGetHandlers) 
+		private readonly IAPIPostHandlers _postHandlers;
+		public AvailableCardsAPI(IAPIGetHandlers aPIGetHandlers, IAPIPostHandlers postHandlers) 
 		{
 			_apiGetHandlers = aPIGetHandlers;
+			_postHandlers = postHandlers;
 		}
 
 		// GET: ViewAllCards
@@ -23,6 +26,31 @@ namespace APILayer.Controllers
 		{
 			var data = await _apiGetHandlers.GetAllCards();
 			return data.ToList();
+		}
+
+		// POST: Post new cards to Database
+		[Route("PostNewCard")]
+		[HttpPost]
+		public async Task<IActionResult> PostNewCard([FromBody] CardModel model)
+		{
+			try
+			{
+				if (model == null)
+				{
+					return BadRequest("Not a proper card");
+				}
+
+				await _postHandlers.APIPostHandler(model);
+				return Ok();
+
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+				Console.WriteLine(ex.StackTrace);
+
+				return StatusCode(500, "Problem at API");
+			}
 		}
 /*
 		// GET: AvailableCardsAPI/Details/5

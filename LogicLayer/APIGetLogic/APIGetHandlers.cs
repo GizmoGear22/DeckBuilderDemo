@@ -12,9 +12,11 @@ namespace LogicLayer.APIGetLogic
 	public class APIGetHandlers : IAPIGetHandlers
 	{
 		private readonly IAvailableCardsController _availableCardsController;
-		public APIGetHandlers(IAvailableCardsController availableCardsController)
+		private readonly IDBCardAccess _cardAccess;
+		public APIGetHandlers(IAvailableCardsController availableCardsController, IDBCardAccess cardAccess)
 		{
 			_availableCardsController = availableCardsController;
+			_cardAccess = cardAccess;
 		}
 		public async Task<IEnumerable<CardModel>> GetAllCards()
 		{
@@ -22,10 +24,12 @@ namespace LogicLayer.APIGetLogic
 			return data.ToList();
 		}
 
+		
 		public async Task<IEnumerable<CardModel>> GetAllCardsByType(CardType type)
 		{
 			var data = await _availableCardsController.SeeCardOptionsByType(type);
 			return data.ToList();
 		}
+		
 	}
 }

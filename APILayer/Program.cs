@@ -1,6 +1,7 @@
 using DBAccess;
 using DBAccess.DBControllers;
 using LogicLayer.APIGetLogic;
+using LogicLayer.APIPostLogic;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,9 +12,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+//Dependency Injection Services
 builder.Services.AddTransient<IDBCardAccess, DBCardAccess>();
 builder.Services.AddTransient<IAvailableCardsController, AvailableCardsController>();
 builder.Services.AddTransient<IAPIGetHandlers, APIGetHandlers>();
+builder.Services.AddTransient<IAPIPostHandlers, APIPostHandlers>();
 
 var app = builder.Build();
 

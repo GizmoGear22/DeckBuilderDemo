@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Dapper;
 using Models;
+using System.Configuration;
 
 namespace DBAccess
 {

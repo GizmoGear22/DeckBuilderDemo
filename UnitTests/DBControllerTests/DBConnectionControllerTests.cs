@@ -9,13 +9,13 @@ using DBAccess.DBControllers;
 using Models;
 using DBAccess;
 using Dapper;
-using Microsoft.Extensions.Configuration;
 using System.Xml.Schema;
 using System.Collections;
 using System.Xml.Linq;
 using System.Reflection;
 using System.Net.Quic;
 using System.Text.RegularExpressions;
+using Microsoft.Extensions.Configuration;
 
 namespace UnitTests.DBControllerTests
 {
@@ -23,11 +23,13 @@ namespace UnitTests.DBControllerTests
 	{
 		private readonly IAvailableCardsController _availableCardsController;
 		private readonly Mock<IDBCardAccess> _connectionHandlerMock;
+		private readonly Mock<IConfiguration> _configuration;
 
 		public DBConnectionControllerTests()
 		{
 			_connectionHandlerMock = new Mock<IDBCardAccess>();
-			_availableCardsController = new AvailableCardsController(_connectionHandlerMock.Object);
+			_configuration = new Mock<IConfiguration>();
+			_availableCardsController = new AvailableCardsController(_configuration.Object, _connectionHandlerMock.Object);
 		}
 
 		SampleCardLists cardLists = new SampleCardLists();

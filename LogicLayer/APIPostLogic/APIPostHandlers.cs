@@ -10,16 +10,17 @@ using Models;
 namespace LogicLayer.APIPostLogic
 {
 
-	public class APIPostHandlers
+	public class APIPostHandlers : IAPIPostHandlers
 	{
 		private readonly IAvailableCardsController _controller;
 		public APIPostHandlers(IAvailableCardsController controller)
 		{
 			_controller = controller;
 		}
-		public void APIPostHandler(CardModel model)
+
+		public async Task APIPostHandler(CardModel model)
 		{
-			_controller.PostNewCardsToDB(model);
+			await _controller.PostNewCardsToDB(model);
 		}
 	}
 }

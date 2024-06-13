@@ -6,8 +6,8 @@ namespace DBAccess.DBControllers
 {
 	public interface IAvailableCardsController
 	{
+		Task<int> PostNewCardsToDB(CardModel model);
 		Task<List<CardModel>> SeeAllCardOptions();
 		Task<List<CardModel>> SeeCardOptionsByType(CardType param);
-		Task<int> PostNewCardsToDB(CardModel model);
 	}
 }
