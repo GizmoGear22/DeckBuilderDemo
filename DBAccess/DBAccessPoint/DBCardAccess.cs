@@ -13,9 +13,11 @@ namespace DBAccess
 	public class DBCardAccess : IDBCardAccess
 	{
 		private readonly IConfiguration _configuration;
-		public DBCardAccess(IConfiguration configuration)
+		private readonly ILogger<IDBCardAccess> _logger;
+		public DBCardAccess(IConfiguration configuration, ILogger<IDBCardAccess> logger)
 		{
 			_configuration = configuration;
+			_logger = logger;
 		}
 		public string CnnVal()
 		{
@@ -33,6 +35,7 @@ namespace DBAccess
 			catch (Exception ex)
 			{
 					Console.WriteLine(ex.Message);
+					_logger.LogError(ex.Message);
 					throw ex;
 			}
 
@@ -52,8 +55,18 @@ namespace DBAccess
 		{
 			using (var connection = new SqlConnection(CnnVal()))
 			{
-				var data = await connection.ExecuteAsync(sqlString, param);
-				return data;
+				try
+				{
+					var data = await connection.ExecuteAsync(sqlString, param);
+					return data;
+				}
+				catch (Exception ex) 
+				{
+					_logger.LogError(ex.Message);
+					throw new Exception(ex.Message);
+				}
+
+
 			}
 		}
 	}

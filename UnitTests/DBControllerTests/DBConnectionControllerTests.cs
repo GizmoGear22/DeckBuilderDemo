@@ -58,11 +58,11 @@ namespace UnitTests.DBControllerTests
 		{
 			//Arrange
 			var cardList = cardLists.SampleListByType();
-			_connectionHandlerMock.Setup(db => db.DBGetConnectionHandlerByType<CardModel>("Select * from dbo.AvailableCards where type = @param", CardType.machine)).ReturnsAsync(new List<CardModel>(cardList));
+			_connectionHandlerMock.Setup(db => db.DBGetConnectionHandlerByType<CardModel>("Select * from dbo.AvailableCards where type = @param", CardType.Machine)).ReturnsAsync(new List<CardModel>(cardList));
 
 			//Act
 
-			var result = await _availableCardsController.SeeCardOptionsByType(CardType.machine);
+			var result = await _availableCardsController.SeeCardOptionsByType(CardType.Machine);
 
 			//Assert
 
@@ -78,7 +78,7 @@ namespace UnitTests.DBControllerTests
 			{
 				id = 1,
 				name = "spring rifle",
-				type = CardType.machine,
+				type = CardType.Machine,
 				attack = 2,
 				defense = 1
 			};

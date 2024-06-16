@@ -27,7 +27,7 @@ namespace LogicLayer.APIGetLogic
 		}
 
 
-		public async Task<IEnumerable<CardModel>> GetAllCardsByType(CardType type)
+		public async Task<IEnumerable<CardModel>> GetAllCardsByTypeRepository(CardType type)
 		{
 			var data = await _availableCardsController.SeeCardOptionsByType(type);
 			return data.ToList();

@@ -19,11 +19,11 @@ namespace Models
 
 	public enum CardType
 	{
-		machine,
-		pyro,
-		alchemy,
-		tesla,
-		bio
+		Machine,
+		Pyro,
+		Alchemy,
+		Tesla,
+		Bio
 	}
 
 }

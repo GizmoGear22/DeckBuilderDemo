@@ -13,10 +13,12 @@ namespace APILayer.Controllers
 	{
 		private readonly IAPIGetHandlers _apiGetHandlers;
 		private readonly IAPIPostHandlers _postHandlers;
-		public AvailableCardsAPI(IAPIGetHandlers aPIGetHandlers, IAPIPostHandlers postHandlers) 
+		private readonly ILogger _logger;
+		public AvailableCardsAPI(IAPIGetHandlers aPIGetHandlers, IAPIPostHandlers postHandlers, ILogger logger) 
 		{
 			_apiGetHandlers = aPIGetHandlers;
 			_postHandlers = postHandlers;
+			_logger = logger;
 		}
 
 		// GET: ViewAllCards
@@ -29,8 +31,16 @@ namespace APILayer.Controllers
 			return getData.ToList();
 		}
 
-		// POST: Post new cards to Database
-		[Route("PostNewCard")]
+		[Route("GetAllCards/Machine")]
+		[HttpGet]
+		public async Task<IEnumerable<CardModel>> GetAllCardsByMachineType()
+		{
+			var getData = await _apiGetHandlers.GetAllCardsByTypeRepository(CardType.Machine);
+			return getData.ToList();
+		}
+
+// POST: Post new cards to Database
+[Route("PostNewCard")]
 		[HttpPost]
 		public async Task<IActionResult> PostNewCard([FromBody] CardModel model)
 		{
@@ -49,10 +59,12 @@ namespace APILayer.Controllers
 			{
 				Console.WriteLine(ex.Message);
 				Console.WriteLine(ex.StackTrace);
-
+				_logger.LogError(ex.Message);
 				return StatusCode(500, "Problem at API");
 			}
 		}
+
+
 /*
 		// GET: AvailableCardsAPI/Details/5
 		public ActionResult Details(int id)
