@@ -22,9 +22,11 @@ namespace APILayer.Controllers
 		// GET: ViewAllCards
 		[Route("GetAllCards")]
 		[HttpGet]
-		public async Task GetAllCards()
+
+		public async Task<IEnumerable<CardModel>> GetAllCards()
 		{
-			await _apiGetHandlers.GetAllCards();
+			var getData = await _apiGetHandlers.GetAllCardsFromRepository();
+			return getData.ToList();
 		}
 
 		// POST: Post new cards to Database

@@ -6,9 +6,7 @@ namespace LogicLayer.APIGetLogic
 {
 	public interface IAPIGetHandlers
 	{
-		Task GetAllCards();
-		
 		Task<IEnumerable<CardModel>> GetAllCardsByType(CardType type);
-		
+		Task<IEnumerable<CardModel>> GetAllCardsFromRepository();
 	}
 }
