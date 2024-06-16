@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using System.Collections.Generic;
+using Microsoft.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Dapper;
 using Models;
-using System.Configuration;
+using System;
+using Microsoft.Extensions.Logging;
 
 namespace DBAccess
 {
@@ -26,10 +25,17 @@ namespace DBAccess
 		public async Task<List<T>> DBGetConnectionHandler<T>(string sqlString)
 		{
 			using (var connection = new SqlConnection(CnnVal()))
+				try
+				{
+					var data = await connection.QueryAsync<T>(sqlString);
+					return data.ToList();
+				}
+			catch (Exception ex)
 			{
-				var data = await connection.QueryAsync<T>(sqlString);
-				return data.ToList();
+					Console.WriteLine(ex.Message);
+					throw ex;
 			}
+
 		}
 
 		public async Task<List<T>> DBGetConnectionHandlerByType<T>(string sqlString, CardType param)

@@ -18,10 +18,9 @@ namespace LogicLayer.APIGetLogic
 			_availableCardsController = availableCardsController;
 			_cardAccess = cardAccess;
 		}
-		public async Task<IEnumerable<CardModel>> GetAllCards()
+		public async Task GetAllCards()
 		{
-			var data = await _availableCardsController.SeeAllCardOptions();
-			return data.ToList();
+			await _availableCardsController.SeeAllCardOptions();
 		}
 
 		

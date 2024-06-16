@@ -7,25 +7,33 @@ using Microsoft.Extensions.Configuration;
 using Models;
 using NPOI.SS.Formula.Functions;
 using Dapper;
-using System.Data.SqlClient;
+using Microsoft.Extensions.Logging;
 
 namespace DBAccess.DBControllers
 {
 	public class AvailableCardsController : IAvailableCardsController
 	{
 		private readonly IDBCardAccess _connectionHandler;
-		public AvailableCardsController(IConfiguration configuration, IDBCardAccess connectionHandler)
+		public AvailableCardsController(IDBCardAccess connectionHandler)
 		{
 			_connectionHandler = connectionHandler;
 		}
 
 
-
 		public async Task<List<CardModel>> SeeAllCardOptions()
 		{
-			string sql = "Select * from dbo.AvailableCards";
-			var allCards = await _connectionHandler.DBGetConnectionHandler<CardModel>(sql);
-			return allCards;
+			try
+			{
+				string sql = "Select * from dbo.AvailableCards";
+				var allCards = await _connectionHandler.DBGetConnectionHandler<CardModel>(sql);
+				return allCards;
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+				throw;
+			}
+
 		}
 
 

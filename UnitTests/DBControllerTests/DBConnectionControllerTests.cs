@@ -16,6 +16,7 @@ using System.Reflection;
 using System.Net.Quic;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Configuration;
+using Castle.Core.Logging;
 
 namespace UnitTests.DBControllerTests
 {
@@ -29,7 +30,7 @@ namespace UnitTests.DBControllerTests
 		{
 			_connectionHandlerMock = new Mock<IDBCardAccess>();
 			_configuration = new Mock<IConfiguration>();
-			_availableCardsController = new AvailableCardsController(_configuration.Object, _connectionHandlerMock.Object);
+			_availableCardsController = new AvailableCardsController(_connectionHandlerMock.Object);
 		}
 
 		SampleCardLists cardLists = new SampleCardLists();
@@ -46,9 +47,9 @@ namespace UnitTests.DBControllerTests
 			var result = await _availableCardsController.SeeAllCardOptions();
 
 			//Assert
-
 			Assert.NotNull(result);
 			Assert.Equal(sampleAllCards, result);
+
 
 		}
 
