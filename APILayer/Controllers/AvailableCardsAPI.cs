@@ -13,12 +13,10 @@ namespace APILayer.Controllers
 	{
 		private readonly IAPIGetHandlers _apiGetHandlers;
 		private readonly IAPIPostHandlers _postHandlers;
-		private readonly ILogger _logger;
-		public AvailableCardsAPI(IAPIGetHandlers aPIGetHandlers, IAPIPostHandlers postHandlers, ILogger logger) 
+		public AvailableCardsAPI(IAPIGetHandlers aPIGetHandlers, IAPIPostHandlers postHandlers) 
 		{
 			_apiGetHandlers = aPIGetHandlers;
 			_postHandlers = postHandlers;
-			_logger = logger;
 		}
 
 		// GET: ViewAllCards
@@ -59,7 +57,6 @@ namespace APILayer.Controllers
 			{
 				Console.WriteLine(ex.Message);
 				Console.WriteLine(ex.StackTrace);
-				_logger.LogError(ex.Message);
 				return StatusCode(500, "Problem at API");
 			}
 		}

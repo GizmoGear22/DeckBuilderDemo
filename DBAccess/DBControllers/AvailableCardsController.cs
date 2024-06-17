@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Models;
 using NPOI.SS.Formula.Functions;
 using Dapper;
-using Microsoft.Extensions.Logging;
 
 namespace DBAccess.DBControllers
 {

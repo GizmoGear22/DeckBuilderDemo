@@ -6,18 +6,15 @@ using Microsoft.Extensions.Configuration;
 using Dapper;
 using Models;
 using System;
-using Microsoft.Extensions.Logging;
 
 namespace DBAccess
 {
 	public class DBCardAccess : IDBCardAccess
 	{
 		private readonly IConfiguration _configuration;
-		private readonly ILogger<IDBCardAccess> _logger;
-		public DBCardAccess(IConfiguration configuration, ILogger<IDBCardAccess> logger)
+		public DBCardAccess(IConfiguration configuration)
 		{
 			_configuration = configuration;
-			_logger = logger;
 		}
 		public string CnnVal()
 		{
@@ -35,7 +32,6 @@ namespace DBAccess
 			catch (Exception ex)
 			{
 					Console.WriteLine(ex.Message);
-					_logger.LogError(ex.Message);
 					throw ex;
 			}
 
@@ -62,7 +58,6 @@ namespace DBAccess
 				}
 				catch (Exception ex) 
 				{
-					_logger.LogError(ex.Message);
 					throw new Exception(ex.Message);
 				}
 
