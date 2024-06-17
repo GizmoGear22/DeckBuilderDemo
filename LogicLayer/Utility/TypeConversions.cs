@@ -7,9 +7,9 @@ using Models;
 
 namespace LogicLayer.Utility
 {
-	public class TypeToIntConversions
+	public class TypeConversions
 	{
-		public void IntToTypeConversion (CardModel model, FrontEndModel newModel)
+		public static string IntToTypeConversion (CardModel model, FrontEndModel newModel)
 		{
 			switch (model.type)
 			{
@@ -29,6 +29,7 @@ namespace LogicLayer.Utility
 					newModel.type = "Bio";
 					break;
 			}
+			return newModel.type;
 		}
 	}
 }
