@@ -18,7 +18,7 @@ namespace LogicLayer.APIPostLogic
 			_controller = controller;
 		}
 
-		public async Task DBPostHandler(CardModel model)
+		public async Task DBPostHandler(DBCardModel model)
 		{
 			await _controller.PostNewCardsToDB(model);
 		}

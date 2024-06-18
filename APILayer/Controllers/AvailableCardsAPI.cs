@@ -29,7 +29,7 @@ namespace APILayer.Controllers
 
 		[Route("GetAllCards/Machine")]
 		[HttpGet]
-		public async Task<IEnumerable<CardModel>> GetAllCardsByMachineType()
+		public async Task<IEnumerable<DBCardModel>> GetAllCardsByMachineType()
 		{
 			throw new NotImplementedException();
 		}
@@ -37,7 +37,7 @@ namespace APILayer.Controllers
 // POST: Post new cards to Database
 [Route("PostNewCard")]
 		[HttpPost]
-		public async Task<IActionResult> PostNewCard([FromBody] CardModel model)
+		public async Task<IActionResult> PostNewCard([FromBody] DBCardModel model)
 		{
 			throw new NotImplementedException();
 		}

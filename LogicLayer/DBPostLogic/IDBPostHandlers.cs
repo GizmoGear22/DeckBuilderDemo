@@ -5,6 +5,6 @@ namespace LogicLayer.APIPostLogic
 {
 	public interface IDBPostHandlers
 	{
-		Task DBPostHandler(CardModel model);
+		Task DBPostHandler(DBCardModel model);
 	}
 }

@@ -16,7 +16,7 @@ namespace UnitTests.LogicLayerTests
 		public async Task DBPostHandlerTest()
 		{
 			//arrange
-			CardModel model = new CardModel();
+			DBCardModel model = new DBCardModel();
 			var mock = new Mock<IAvailableCardsController>();
 			var handler = new DBPostHandlers(mock.Object);
 

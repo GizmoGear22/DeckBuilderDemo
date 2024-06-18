@@ -41,7 +41,7 @@ namespace UnitTests.DBControllerTests
 			var sampleAllCards = cardLists.SampleList(); 
 			//Arrange
 
-			_connectionHandlerMock.Setup(db => db.DBGetConnectionHandler<CardModel>("Select * from dbo.AvailableCards")).ReturnsAsync(new List<CardModel>(sampleAllCards));
+			_connectionHandlerMock.Setup(db => db.DBGetConnectionHandler<DBCardModel>("Select * from dbo.AvailableCards")).ReturnsAsync(new List<DBCardModel>(sampleAllCards));
 
 			//Act
 			var result = await _availableCardsController.SeeAllCardOptions();
@@ -58,7 +58,7 @@ namespace UnitTests.DBControllerTests
 		{
 			//Arrange
 			var cardList = cardLists.SampleListByType();
-			_connectionHandlerMock.Setup(db => db.DBGetConnectionHandlerByType<CardModel>("Select * from dbo.AvailableCards where type = @param", CardType.Machine)).ReturnsAsync(new List<CardModel>(cardList));
+			_connectionHandlerMock.Setup(db => db.DBGetConnectionHandlerByType<DBCardModel>("Select * from dbo.AvailableCards where type = @param", CardType.Machine)).ReturnsAsync(new List<DBCardModel>(cardList));
 
 			//Act
 
@@ -74,7 +74,7 @@ namespace UnitTests.DBControllerTests
 		public async Task DBPostConnectionHandlerTest()
 		{
 			//Arrange
-			CardModel model = new CardModel
+			DBCardModel model = new DBCardModel
 			{
 				id = 1,
 				name = "spring rifle",

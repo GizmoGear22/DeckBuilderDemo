@@ -9,11 +9,11 @@ namespace UnitTests
 {
 	public class SampleCardLists
 	{
-		public List<CardModel> SampleList()
+		public List<DBCardModel> SampleList()
 		{
-			var output = new List<CardModel>
+			var output = new List<DBCardModel>
 			{
-				new CardModel
+				new DBCardModel
 				{
 					id = 1,
 					name = "spring rifle",
@@ -22,7 +22,7 @@ namespace UnitTests
 					defense = 1
 				},
 
-				new CardModel
+				new DBCardModel
 				{
 					id = 2,
 					name = "fire flask",
@@ -31,7 +31,7 @@ namespace UnitTests
 					defense = 0
 				},
 
-				new CardModel
+				new DBCardModel
 				{
 					id = 3,
 					name = "Gear Grinder",
@@ -43,11 +43,11 @@ namespace UnitTests
 			return output;
 		}
 
-		public List<CardModel> SampleListByType()
+		public List<DBCardModel> SampleListByType()
 		{
-			var output = new List<CardModel>
+			var output = new List<DBCardModel>
 			{
-				new CardModel
+				new DBCardModel
 				{
 					id = 1,
 					name = "spring rifle",
@@ -55,7 +55,7 @@ namespace UnitTests
 					attack = 2,
 					defense = 1
 				},
-				new CardModel
+				new DBCardModel
 				{
 					id = 3,
 					name = "Gear Grinder",

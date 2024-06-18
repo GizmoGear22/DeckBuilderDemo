@@ -45,11 +45,13 @@
   <ItemGroup>
     <Compile Include="APIGetLogic\APIGetHandlers.cs" />
     <Compile Include="APIGetLogic\IAPIGetHandlers.cs" />
+    <Compile Include="APIPostLogic\APIPostHandlers.cs" />
     <Compile Include="DBGetLogic\DBGetHandlers.cs" />
     <Compile Include="DBGetLogic\IDBGetHandlers.cs" />
     <Compile Include="DBPostLogic\DBPostHandlers.cs" />
     <Compile Include="DBPostLogic\IDBPostHandlers.cs" />
     <Compile Include="ModelConversions\DBModelToFrontModel.cs" />
+    <Compile Include="ModelConversions\FrontEndModelToDBModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\TypeConversions.cs" />

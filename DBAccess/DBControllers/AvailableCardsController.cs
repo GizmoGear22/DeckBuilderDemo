@@ -19,12 +19,12 @@ namespace DBAccess.DBControllers
 		}
 
 
-		public async Task<List<CardModel>> SeeAllCardOptions()
+		public async Task<List<DBCardModel>> SeeAllCardOptions()
 		{
 			try
 			{
 				string sql = "Select * from dbo.AvailableCards";
-				var allCards = await _connectionHandler.DBGetConnectionHandler<CardModel>(sql);
+				var allCards = await _connectionHandler.DBGetConnectionHandler<DBCardModel>(sql);
 				return allCards;
 			}
 			catch (Exception ex)
@@ -36,15 +36,15 @@ namespace DBAccess.DBControllers
 		}
 
 
-		public async Task<List<CardModel>> SeeCardOptionsByType(CardType param)
+		public async Task<List<DBCardModel>> SeeCardOptionsByType(CardType param)
 		{
 			string sql = "Select * from dbo.AvailableCards where type = @param";
-			var allCards = await _connectionHandler.DBGetConnectionHandlerByType<CardModel>(sql, param);
+			var allCards = await _connectionHandler.DBGetConnectionHandlerByType<DBCardModel>(sql, param);
 			return allCards;
 		}
 
 		
-		public async Task<int> PostNewCardsToDB(CardModel model)
+		public async Task<int> PostNewCardsToDB(DBCardModel model)
 		{
 			string sql = "INSERT INTO [dbo].[AvailableCards]([id],[name],[type],[cost],[attack],[defense]) Values (@id, @name, @type, @attack, @defense";
 			var param =

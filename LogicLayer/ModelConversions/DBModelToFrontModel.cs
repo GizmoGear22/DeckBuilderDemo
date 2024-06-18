@@ -10,7 +10,7 @@ namespace LogicLayer.ModelConversions
 {
 	public class DBModelToFrontModel
 	{
-		public static FrontEndModel ConvertDBModeltoFrontEndModel(CardModel model)
+		public static FrontEndModel ConvertDBModeltoFrontEndModel(DBCardModel model)
 		{
 			FrontEndModel frontEndModel = new FrontEndModel();
 

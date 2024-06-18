@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-	public class CardModel
+	public class DBCardModel
 	{
 		public int id { get; set; }
 		public string name { get; set; }

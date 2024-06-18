@@ -22,7 +22,7 @@ namespace UnitTests.LogicLayerTests
 			var sampleList = sample.SampleList();
 			//Arrange
 			var mock = new Mock<IAvailableCardsController>();
-			var data = mock.Setup(x => x.SeeAllCardOptions()).ReturnsAsync(new List<CardModel>(sampleList));
+			var data = mock.Setup(x => x.SeeAllCardOptions()).ReturnsAsync(new List<DBCardModel>(sampleList));
 
 
 			//Act
