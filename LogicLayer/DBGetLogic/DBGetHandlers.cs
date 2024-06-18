@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -13,11 +13,9 @@ namespace LogicLayer.APIGetLogic
 	public class DBGetHandlers : IDBGetHandlers
 	{
 		private readonly IAvailableCardsController _availableCardsController;
-		private readonly IDBCardAccess _cardAccess;
-		public DBGetHandlers(IAvailableCardsController availableCardsController, IDBCardAccess cardAccess)
+		public DBGetHandlers(IAvailableCardsController availableCardsController)
 		{
 			_availableCardsController = availableCardsController;
-			_cardAccess = cardAccess;
 		}
 
 		public async Task<IEnumerable<CardModel>> GetAllCardsFromRepository()
