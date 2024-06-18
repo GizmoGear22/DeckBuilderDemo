@@ -12,18 +12,19 @@ namespace UnitTests.LogicLayerTests
 {
 	public class DBPostHandlersTests
 	{
+		[Fact]
 		public async Task DBPostHandlerTest()
 		{
 			//arrange
+			CardModel model = new CardModel();
 			var mock = new Mock<IAvailableCardsController>();
-			CardModel cardModel = new CardModel();
-
-			mock.Setup(x => x.PostNewCardsToDB(cardModel));
+			var handler = new DBPostHandlers(mock.Object);
 
 			//act
-			var result = new DBPostHandlers(mock.Object);
+			await handler.DBPostHandler(model);
 
 			//assert
+			mock.Verify(x => x.PostNewCardsToDB(model), Times.Once);
 		}
 	}
 }
