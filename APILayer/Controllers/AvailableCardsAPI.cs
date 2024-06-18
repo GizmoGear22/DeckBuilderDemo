@@ -11,21 +11,19 @@ namespace APILayer.Controllers
 	[Route("/api/[controller]")]
 	public class AvailableCardsAPI : Controller
 	{
-		private readonly IAPIGetHandlers _apiGetHandlers;
-		private readonly IAPIPostHandlers _postHandlers;
-		public AvailableCardsAPI(IAPIGetHandlers aPIGetHandlers, IAPIPostHandlers postHandlers) 
+		private readonly IAPIGetHandlers _apiGetHandler;
+		public AvailableCardsAPI(IAPIGetHandlers apiGetHandlers) 
 		{
-			_apiGetHandlers = aPIGetHandlers;
-			_postHandlers = postHandlers;
+			_apiGetHandler = apiGetHandlers;
 		}
 
 		// GET: ViewAllCards
 		[Route("GetAllCards")]
 		[HttpGet]
 
-		public async Task<IEnumerable<CardModel>> GetAllCards()
+		public async Task<IEnumerable<FrontEndModel>> GetAllCards()
 		{
-			var getData = await _apiGetHandlers.GetAllCardsFromRepository();
+			var getData = await _apiGetHandler.GetAllCards();
 			return getData.ToList();
 		}
 
@@ -33,8 +31,7 @@ namespace APILayer.Controllers
 		[HttpGet]
 		public async Task<IEnumerable<CardModel>> GetAllCardsByMachineType()
 		{
-			var getData = await _apiGetHandlers.GetAllCardsByTypeRepository(CardType.Machine);
-			return getData.ToList();
+			throw new NotImplementedException();
 		}
 
 // POST: Post new cards to Database
@@ -42,23 +39,7 @@ namespace APILayer.Controllers
 		[HttpPost]
 		public async Task<IActionResult> PostNewCard([FromBody] CardModel model)
 		{
-			try
-			{
-				if (model == null)
-				{
-					return BadRequest("Not a proper card");
-				}
-
-				await _postHandlers.APIPostHandler(model);
-				return Ok();
-
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex.Message);
-				Console.WriteLine(ex.StackTrace);
-				return StatusCode(500, "Problem at API");
-			}
+			throw new NotImplementedException();
 		}
 
 

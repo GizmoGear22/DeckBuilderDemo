@@ -3,8 +3,8 @@ using Models;
 
 namespace LogicLayer.APIPostLogic
 {
-	public interface IAPIPostHandlers
+	public interface IDBPostHandlers
 	{
-		Task APIPostHandler(CardModel model);
+		Task DBPostHandler(CardModel model);
 	}
 }

@@ -1,38 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
-using DBAccess;
-using DBAccess.DBControllers;
+using LogicLayer.ModelConversions;
 using Models;
 
 namespace LogicLayer.APIGetLogic
 {
 	public class APIGetHandlers : IAPIGetHandlers
 	{
-		private readonly IAvailableCardsController _availableCardsController;
-		private readonly IDBCardAccess _cardAccess;
-		public APIGetHandlers(IAvailableCardsController availableCardsController, IDBCardAccess cardAccess)
+		private readonly IDBGetHandlers _dbGetHandlers;
+		public APIGetHandlers(IDBGetHandlers dbGetHandlers)
 		{
-			_availableCardsController = availableCardsController;
-			_cardAccess = cardAccess;
+			_dbGetHandlers = dbGetHandlers;
 		}
-
-		public async Task<IEnumerable<CardModel>> GetAllCardsFromRepository()
+		public async Task<List<FrontEndModel>> GetAllCards()
 		{
-			var allCardData = await _availableCardsController.SeeAllCardOptions();
-			return allCardData;
+			var DBList = await _dbGetHandlers.GetAllCardsFromRepository();
+			List<FrontEndModel> newList = new List<FrontEndModel>();
+			foreach (var item in DBList)
+			{
+				newList.Add(DBModelToFrontModel.ConvertDBModeltoFrontEndModel(item));
+			}
+			return newList;
+
 		}
-
-
-		public async Task<IEnumerable<CardModel>> GetAllCardsByTypeRepository(CardType type)
-		{
-			var data = await _availableCardsController.SeeCardOptionsByType(type);
-			return data.ToList();
-		}
-
 	}
 }
-

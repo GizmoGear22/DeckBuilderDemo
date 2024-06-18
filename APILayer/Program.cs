@@ -16,8 +16,9 @@ builder.Services.AddSwaggerGen();
 //Dependency Injection Services
 builder.Services.AddTransient<IDBCardAccess, DBCardAccess>();
 builder.Services.AddTransient<IAvailableCardsController, AvailableCardsController>();
+builder.Services.AddTransient<IDBGetHandlers, DBGetHandlers>();
+builder.Services.AddTransient<IDBPostHandlers, DBPostHandlers>();
 builder.Services.AddTransient<IAPIGetHandlers, APIGetHandlers>();
-builder.Services.AddTransient<IAPIPostHandlers, APIPostHandlers>();
 
 var app = builder.Build();
 

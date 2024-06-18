@@ -10,15 +10,15 @@ using Models;
 namespace LogicLayer.APIPostLogic
 {
 
-	public class APIPostHandlers : IAPIPostHandlers
+	public class DBPostHandlers : IDBPostHandlers
 	{
 		private readonly IAvailableCardsController _controller;
-		public APIPostHandlers(IAvailableCardsController controller)
+		public DBPostHandlers(IAvailableCardsController controller)
 		{
 			_controller = controller;
 		}
 
-		public async Task APIPostHandler(CardModel model)
+		public async Task DBPostHandler(CardModel model)
 		{
 			await _controller.PostNewCardsToDB(model);
 		}
