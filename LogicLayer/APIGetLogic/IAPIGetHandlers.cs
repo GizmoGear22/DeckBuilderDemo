@@ -6,6 +6,6 @@ namespace LogicLayer.APIGetLogic
 {
 	public interface IAPIGetHandlers
 	{
-		Task<List<FrontEndModel>> GetAllCards();
+		Task<List<CardModel>> GetAllCards();
 	}
 }

@@ -9,27 +9,23 @@ namespace LogicLayer.Utility
 {
 	public class TypeConversions
 	{
-		public static string IntToTypeConversion (CardModel model, FrontEndModel newModel)
+		public static string IntToTypeConversion (CardType model)
 		{
-			switch (model.type)
+			switch (model)
 			{
 				case CardType.Machine:
-					newModel.type = "Machine";
-					break;
+					return "Machine";
 				case CardType.Pyro:
-					newModel.type = "Pyro";
-					break;
+					return "Pyro";
 				case CardType.Alchemy:
-					newModel.type = "Alchemy";
-					break;
+					return "Alchemy";
 				case CardType.Tesla:
-					newModel.type = "Tesla";
-					break;
+					return "Tesla";
 				case CardType.Bio:
-					newModel.type = "Bio";
-					break;
+					return "Bio";
+				default:
+					return ("Unknown");
 			}
-			return newModel.type;
 		}
 	}
 }

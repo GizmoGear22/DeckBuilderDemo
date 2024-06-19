@@ -15,15 +15,8 @@ namespace LogicLayer.APIGetLogic
 		{
 			_dbGetHandlers = dbGetHandlers;
 		}
-		public async Task<List<FrontEndModel>> GetAllCards()
+		public async Task<List<CardModel>> GetAllCards()
 		{
-			var DBList = await _dbGetHandlers.GetAllCardsFromRepository();
-			List<FrontEndModel> newList = new List<FrontEndModel>();
-			foreach (var item in DBList)
-			{
-				newList.Add(DBModelToFrontModel.ConvertDBModeltoFrontEndModel(item));
-			}
-			return newList;
 
 		}
 	}

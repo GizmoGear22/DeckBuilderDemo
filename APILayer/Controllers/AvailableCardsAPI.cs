@@ -21,17 +21,10 @@ namespace APILayer.Controllers
 		[Route("GetAllCards")]
 		[HttpGet]
 
-		public async Task<IEnumerable<FrontEndModel>> GetAllCards()
+		public async Task<IEnumerable<CardModel>> GetAllCards()
 		{
 			var getData = await _apiGetHandler.GetAllCards();
 			return getData.ToList();
-		}
-
-		[Route("GetAllCards/Machine")]
-		[HttpGet]
-		public async Task<IEnumerable<CardModel>> GetAllCardsByMachineType()
-		{
-			throw new NotImplementedException();
 		}
 
 // POST: Post new cards to Database

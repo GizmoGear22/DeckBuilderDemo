@@ -12,16 +12,7 @@ namespace LogicLayer.ModelConversions
 	{
 		public static FrontEndModel ConvertDBModeltoFrontEndModel(CardModel model)
 		{
-			FrontEndModel frontEndModel = new FrontEndModel();
-
-			frontEndModel.id = model.id;
-			frontEndModel.name = model.name;
-			frontEndModel.type = TypeConversions.IntToTypeConversion(model, frontEndModel);
-			frontEndModel.cost = model.cost;
-			frontEndModel.attack = model.attack;
-			frontEndModel.defense = model.defense;
-
-			return frontEndModel;
+			throw new NotImplementedException();
 		}
 	}
 }
