@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using DBAccess;
 using DBAccess.DBControllers;
 using LogicLayer.APIGetLogic;
@@ -19,6 +20,8 @@ builder.Services.AddTransient<IAvailableCardsController, AvailableCardsControlle
 builder.Services.AddTransient<IDBGetHandlers, DBGetHandlers>();
 builder.Services.AddTransient<IDBPostHandlers, DBPostHandlers>();
 builder.Services.AddTransient<IAPIGetHandlers, APIGetHandlers>();
+
+builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 var app = builder.Build();
 

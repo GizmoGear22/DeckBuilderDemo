@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LogicLayer.ModelConversions;
+using LogicLayer.Utility;
 using Models;
 
 namespace LogicLayer.APIGetLogic
@@ -17,7 +18,8 @@ namespace LogicLayer.APIGetLogic
 		}
 		public async Task<List<CardModel>> GetAllCards()
 		{
-
+			var dataList = await _dbGetHandlers.GetAllCardsFromRepository();
+			return dataList.ToList();
 		}
 	}
 }
