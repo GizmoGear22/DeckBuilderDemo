@@ -20,8 +20,9 @@ builder.Services.AddTransient<IAvailableCardsController, AvailableCardsControlle
 builder.Services.AddTransient<IDBGetHandlers, DBGetHandlers>();
 builder.Services.AddTransient<IDBPostHandlers, DBPostHandlers>();
 builder.Services.AddTransient<IAPIGetHandlers, APIGetHandlers>();
+builder.Services.AddTransient<IAPIPostHandler, APIPostHandler>();
 
-builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+//builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 var app = builder.Build();
 

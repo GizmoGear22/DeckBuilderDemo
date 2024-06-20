@@ -13,9 +13,12 @@ namespace APILayer.Controllers
 	public class AvailableCardsAPI : Controller
 	{
 		private readonly IAPIGetHandlers _apiGetHandler;
-		public AvailableCardsAPI(IAPIGetHandlers apiGetHandlers) 
+		private readonly IAPIPostHandler _postHandler;
+		public AvailableCardsAPI(IAPIGetHandlers apiGetHandlers, IAPIPostHandler postHandler) 
 		{
 			_apiGetHandler = apiGetHandlers;
+			_postHandler = postHandler;
+
 		}
 
 		// GET: ViewAllCards
@@ -25,6 +28,10 @@ namespace APILayer.Controllers
 		public async Task<IEnumerable<CardModel>> GetAllCards()
 		{
 			var getData = await _apiGetHandler.GetAllCards();
+			foreach (var card in getData) 
+			{
+				CardType.Machine.ToString();
+			}
 			return getData.ToList();
 		}
 
@@ -33,7 +40,9 @@ namespace APILayer.Controllers
 		[HttpPost]
 		public async Task<IActionResult> PostNewCard([FromBody] CardModel model)
 		{
-			throw new NotImplementedException();
+			await _postHandler.PostNewCard(model);
+
+			return Ok(model);	
 		}
 
 
