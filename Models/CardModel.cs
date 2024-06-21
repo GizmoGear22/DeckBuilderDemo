@@ -17,6 +17,7 @@ namespace Models
 		public int cost { get; set; }
 		public int attack {  get; set; }
 		public int defense { get; set; }
+		public string typeString => type.ToString();
 	}
 
 	public enum CardType

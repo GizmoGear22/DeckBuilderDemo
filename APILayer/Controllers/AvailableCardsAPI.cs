@@ -30,7 +30,10 @@ namespace APILayer.Controllers
 			var getData = await _apiGetHandler.GetAllCards();
 			foreach (var card in getData) 
 			{
-				CardType.Machine.ToString();
+				if (card.type == CardType.Machine)
+				{
+					card.type.ToString();
+				}
 			}
 			return getData.ToList();
 		}

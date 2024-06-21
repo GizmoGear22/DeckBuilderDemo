@@ -46,7 +46,7 @@ namespace DBAccess.DBControllers
 		
 		public async Task<int> PostNewCardsToDB(CardModel model)
 		{
-			string sql = "INSERT INTO [dbo].[AvailableCards]([id],[name],[type],[cost],[attack],[defense]) Values (@id, @name, @type, @attack, @defense";
+			string sql = "INSERT INTO [dbo].[AvailableCards]([id],[name],[type],[cost],[attack],[defense]) Values (@id, @name, @type, @cost, @attack, @defense)";
 			var param =
 			new
 			{
