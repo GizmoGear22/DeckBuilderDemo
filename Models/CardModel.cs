@@ -18,6 +18,7 @@ namespace Models
 		public int attack {  get; set; }
 		public int defense { get; set; }
 		public string typeString => type.ToString();
+		public string inputType { get; set; }
 	}
 
 	public enum CardType

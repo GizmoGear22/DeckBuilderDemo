@@ -5,6 +5,7 @@ using LogicLayer;
 using LogicLayer.APIGetLogic;
 using LogicLayer.APIPostLogic;
 using LogicLayer.Utility;
+using System.Reflection;
 
 namespace APILayer.Controllers
 {
@@ -38,11 +39,24 @@ namespace APILayer.Controllers
 			return getData.ToList();
 		}
 
+		//Get: ViewCardsByType
+		[Route("GetAllCardByType")]
+		[HttpGet]
+		public async Task<IEnumerable<CardModel>> GetAllCardsByType(CardType type)
+		{
+			var getData = await _apiGetHandler.GetAllCardsByType(type);
+			return getData.ToList();
+		}
 // POST: Post new cards to Database
 [Route("PostNewCard")]
 		[HttpPost]
 		public async Task<IActionResult> PostNewCard([FromBody] CardModel model)
 		{
+			if (Enum.TryParse(typeof(CardType), model.inputType, out var type))
+			{
+				model.type = (CardType)type;
+			}
+
 			await _postHandler.PostNewCard(model);
 
 			return Ok(model);	
