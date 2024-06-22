@@ -79,6 +79,7 @@
     <Compile Include="DBGetLogic\IDBGetHandlers.cs" />
     <Compile Include="DBPostLogic\DBPostHandlers.cs" />
     <Compile Include="DBPostLogic\IDBPostHandlers.cs" />
+    <Compile Include="DelegateDefinitionLibrary\DelegateValidationDefinition.cs" />
     <Compile Include="ModelConversions\DBModelToFrontModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

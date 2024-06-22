@@ -48,6 +48,7 @@ namespace APILayer.Controllers
 			return getData.ToList();
 		}
 
+		//Get: ViewCardById
 		[Route("GetCardByID")]
 		[HttpGet]
 		public async Task <CardModel> GetCardById(int id)
@@ -56,8 +57,8 @@ namespace APILayer.Controllers
 			return getData;
 		}
 
-// POST: Post new cards to Database
-[Route("PostNewCard")]
+		// POST: Post new cards to Database
+		[Route("PostNewCard")]
 		[HttpPost]
 		public async Task<IActionResult> PostNewCard([FromBody] CardModel model)
 		{
