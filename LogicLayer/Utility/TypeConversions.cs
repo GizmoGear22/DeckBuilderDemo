@@ -14,7 +14,7 @@ namespace LogicLayer.Utility
 			switch (model)
 			{
 				case CardType.Machine:
-					return CardType.Machine.ToString();
+					return "Machine";
 				case CardType.Pyro:
 					return "Pyro";
 				case CardType.Alchemy:
@@ -27,5 +27,6 @@ namespace LogicLayer.Utility
 					return ("Unknown");
 			}
 		}
+
 	}
 }

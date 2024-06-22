@@ -47,6 +47,7 @@ namespace APILayer.Controllers
 			var getData = await _apiGetHandler.GetAllCardsByType(type);
 			return getData.ToList();
 		}
+
 // POST: Post new cards to Database
 [Route("PostNewCard")]
 		[HttpPost]

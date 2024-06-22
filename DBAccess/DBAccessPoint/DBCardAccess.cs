@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Dapper;
 using Models;
 using System;
+using System.Runtime.CompilerServices;
 
 namespace DBAccess
 {
