@@ -27,7 +27,8 @@ namespace Models
 		Pyro,
 		Alchemy,
 		Tesla,
-		Bio
+		Bio,
+		Blank
 	}
 
 }

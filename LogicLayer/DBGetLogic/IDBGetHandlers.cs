@@ -8,5 +8,6 @@ namespace LogicLayer.APIGetLogic
 	{
 		Task<IEnumerable<CardModel>> GetAllCardsByTypeRepository(CardType type);
 		Task<IEnumerable<CardModel>> GetAllCardsFromRepository();
+		Task<CardModel> GetCardByIdFromRepository(int id);
 	}
 }

@@ -48,6 +48,13 @@ namespace APILayer.Controllers
 			return getData.ToList();
 		}
 
+		[Route("GetCardByID")]
+		[HttpGet]
+		public async Task <CardModel> GetCardById(int id)
+		{
+			throw new NotImplementedException();
+		}
+
 // POST: Post new cards to Database
 [Route("PostNewCard")]
 		[HttpPost]

@@ -27,5 +27,10 @@ namespace LogicLayer.APIGetLogic
 			var dataList = await _dbGetHandlers.GetAllCardsByTypeRepository(type);	
 			return dataList.ToList();
 		}
+
+		public async Task<CardModel> GetCardById(int id)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

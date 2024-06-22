@@ -8,5 +8,6 @@ namespace LogicLayer.APIGetLogic
 	{
 		Task<List<CardModel>> GetAllCards();
 		Task<List<CardModel>> GetAllCardsByType(CardType type);
+		Task<CardModel> GetCardById(int id);
 	}
 }
