@@ -79,14 +79,13 @@
     <Compile Include="DBGetLogic\IDBGetHandlers.cs" />
     <Compile Include="DBPostLogic\DBPostHandlers.cs" />
     <Compile Include="DBPostLogic\IDBPostHandlers.cs" />
-    <Compile Include="DelegateDefinitionLibrary\DelegateValidationDefinition.cs" />
     <Compile Include="ModelConversions\DBModelToFrontModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\TypeConversions.cs" />
     <Compile Include="Validation\DelegateValidationMessage.cs" />
-    <Compile Include="Validation\IdValidation.cs" />
-    <Compile Include="Validation\MessageDelegateRoot.cs" />
+    <Compile Include="Validation\IDValidations\IdValidation.cs" />
+    <Compile Include="Validation\IDValidations\IIdValidation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -100,6 +99,10 @@
     <ProjectReference Include="..\DBAccess\DBAccess.csproj">
       <Project>{6bcba36e-622e-4e65-9fff-c1fcfc0a917f}</Project>
       <Name>DBAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DelegateUtilities\DelegateUtilities.csproj">
+      <Project>{c28c41e1-7d53-484e-8d8e-869fef6a93ce}</Project>
+      <Name>DelegateUtilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{dbf60156-8d76-4c63-acc9-0bb743808795}</Project>

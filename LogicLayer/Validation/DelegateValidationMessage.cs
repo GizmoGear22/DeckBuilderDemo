@@ -8,9 +8,10 @@ namespace LogicLayer.Validation
 {
 	public class DelegateValidationMessage
 	{
-		public void ValidationMessage(string message)
+		public static void ValidationMessage(string message)
 		{
-			message = "";
+			Console.WriteLine(message);
+			throw new Exception(message);
 		}
 	}
 }

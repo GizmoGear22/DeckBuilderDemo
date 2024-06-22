@@ -3,6 +3,7 @@ using DBAccess;
 using DBAccess.DBControllers;
 using LogicLayer.APIGetLogic;
 using LogicLayer.APIPostLogic;
+using LogicLayer.Validation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,7 @@ builder.Services.AddTransient<IDBGetHandlers, DBGetHandlers>();
 builder.Services.AddTransient<IDBPostHandlers, DBPostHandlers>();
 builder.Services.AddTransient<IAPIGetHandlers, APIGetHandlers>();
 builder.Services.AddTransient<IAPIPostHandler, APIPostHandler>();
+builder.Services.AddTransient<IIdValidation, IdValidation>();
 
 //builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 

@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicLayer.Validation
+namespace DelegateUtilities
 {
-	public class MessageDelegateRoot
+	internal class Program
 	{
-		public delegate void MessageDelegate(string message);
-
+		static void Main(string[] args)
+		{
+		}
 	}
 }

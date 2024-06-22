@@ -5,13 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Models;
 
-namespace LogicLayer.DelegateDefinitionLibrary
+namespace DelegateUtilities
 {
-
-	public class DelegateValidationDefinition
+	public class ValidationDelegates
 	{
-		public delegate void ValidationDelegate(CardModel model);
-
+		public delegate void DelegateForValidation(CardModel model);
 		public delegate void ValidationMessageDelegate(string message);
 	}
 }
