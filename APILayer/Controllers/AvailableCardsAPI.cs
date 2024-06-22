@@ -52,7 +52,8 @@ namespace APILayer.Controllers
 		[HttpGet]
 		public async Task <CardModel> GetCardById(int id)
 		{
-			throw new NotImplementedException();
+			var getData = await _apiGetHandler.GetCardById(id);
+			return getData;
 		}
 
 // POST: Post new cards to Database

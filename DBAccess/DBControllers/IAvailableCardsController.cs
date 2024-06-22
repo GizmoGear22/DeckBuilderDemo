@@ -9,5 +9,6 @@ namespace DBAccess.DBControllers
 		Task<int> PostNewCardsToDB(CardModel model);
 		Task<List<CardModel>> SeeAllCardOptions();
 		Task<List<CardModel>> SeeCardOptionsByType(CardType param);
+		Task<CardModel> SeeCardById(int id);
 	}
 }

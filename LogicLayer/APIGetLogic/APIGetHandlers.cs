@@ -30,7 +30,8 @@ namespace LogicLayer.APIGetLogic
 
 		public async Task<CardModel> GetCardById(int id)
 		{
-			throw new NotImplementedException();
+			var data = await _dbGetHandlers.GetCardByIdFromRepository(id);
+			return data;
 		}
 	}
 }

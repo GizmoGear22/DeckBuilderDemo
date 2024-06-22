@@ -35,7 +35,6 @@ namespace DBAccess.DBControllers
 
 		}
 
-
 		public async Task<List<CardModel>> SeeCardOptionsByType(CardType param)
 		{
 			string sql = "Select * from dbo.AvailableCards where type = @type";
@@ -43,7 +42,13 @@ namespace DBAccess.DBControllers
 			return allCards;
 		}
 
-		
+		public async Task<CardModel> SeeCardById(int id)
+		{
+			string sql = "Select * from dbo.AvailableCards where id = @id";
+			var card = await _connectionHandler.GetConnectionHandlerById<CardModel>(sql, id);
+			return card;
+		}
+
 		public async Task<int> PostNewCardsToDB(CardModel model)
 		{
 			string sql = "INSERT INTO [dbo].[AvailableCards]([id],[name],[type],[cost],[attack],[defense]) Values (@id, @name, @type,@cost, @attack, @defense)";

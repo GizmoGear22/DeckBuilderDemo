@@ -48,6 +48,16 @@ namespace DBAccess
 			}
 		}
 
+		public async Task<T> GetConnectionHandlerById<T>(string sqlString, int Id)
+		{
+			using (var connection = new SqlConnection(CnnVal()))
+			{
+				var parameter = new { id = Id };
+				var data = await connection.QueryAsync(sqlString, parameter);
+				return data.FirstOrDefault();
+			}      
+		}
+
 		public async Task<int> DBPostConnectionHandler(string sqlString, object param)
 		{
 			using (var connection = new SqlConnection(CnnVal()))
