@@ -18,13 +18,16 @@ namespace LogicLayer.APIPostLogic
 			_dbPostHandlers = dbPostHandlers;
 			_idValidation = idValidation;
 		}
+
 		public async Task PostNewCard(CardModel model)
 		{
-			if (await _idValidation.CheckIfIdExists(model))
+			var checkifExists = _idValidation.CheckIfIdExists(model);
+			var checkId = _idValidation.CheckId(model);
+
+			if (await checkifExists && checkId)
 			{
 				await _dbPostHandlers.DBPostHandler(model);
 			}
-
 		}
 	}
 }

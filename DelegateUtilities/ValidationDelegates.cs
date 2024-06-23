@@ -9,7 +9,7 @@ namespace DelegateUtilities
 {
 	public class ValidationDelegates
 	{
-		public delegate void DelegateForValidation(CardModel model);
+		public delegate bool DelegateForValidation(CardModel model);
 		public delegate void ValidationMessageDelegate(string message);
 	}
 }

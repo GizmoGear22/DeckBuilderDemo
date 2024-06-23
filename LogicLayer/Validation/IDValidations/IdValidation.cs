@@ -18,6 +18,7 @@ namespace LogicLayer.Validation
 			_handlers = handlers;
 		}
 		ValidationDelegates.ValidationMessageDelegate validationMessage = DelegateValidationMessage.ValidationMessage;
+
 		public bool CheckId(CardModel model)
 		{
 
