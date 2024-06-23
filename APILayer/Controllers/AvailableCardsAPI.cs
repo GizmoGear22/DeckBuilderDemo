@@ -4,7 +4,6 @@ using Models;
 using LogicLayer;
 using LogicLayer.APIGetLogic;
 using LogicLayer.APIPostLogic;
-using LogicLayer.Utility;
 using System.Reflection;
 
 namespace APILayer.Controllers

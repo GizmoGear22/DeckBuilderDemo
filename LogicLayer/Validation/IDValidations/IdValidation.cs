@@ -21,7 +21,7 @@ namespace LogicLayer.Validation
 		public bool CheckId(CardModel model)
 		{
 
-			if (model.id < 0)
+			if (model.id <= 0)
 			{
 				string message = "Can't have ID Number less than or equal to 0";
 				validationMessage(message);

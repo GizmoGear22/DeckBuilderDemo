@@ -82,7 +82,6 @@
     <Compile Include="ModelConversions\DBModelToFrontModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utility\TypeConversions.cs" />
     <Compile Include="Validation\DelegateValidationMessage.cs" />
     <Compile Include="Validation\IDValidations\IdValidation.cs" />
     <Compile Include="Validation\IDValidations\IIdValidation.cs" />
@@ -91,7 +90,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Utility\" />
+  </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>

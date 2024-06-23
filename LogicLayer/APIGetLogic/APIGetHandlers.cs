@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LogicLayer.ModelConversions;
-using LogicLayer.Utility;
 using Models;
 
 namespace LogicLayer.APIGetLogic
