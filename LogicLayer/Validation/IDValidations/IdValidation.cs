@@ -33,9 +33,10 @@ namespace LogicLayer.Validation
 			}
 		}
 
-		public bool CheckIfIdExists(CardModel model)
+		public async Task<bool> CheckIfIdExists(CardModel model)
 		{
-			if (_handlers.GetCardById(model.id) != null)
+			var retrievedModel = await _handlers.GetCardById(model.id);
+			if (retrievedModel.id != 0)
 			{
 				string message = "ID already exists";
 				validationMessage(message);

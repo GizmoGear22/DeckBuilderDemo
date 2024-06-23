@@ -20,7 +20,7 @@ namespace LogicLayer.APIPostLogic
 		}
 		public async Task PostNewCard(CardModel model)
 		{
-			if (_idValidation.CheckIfIdExists(model))
+			if (await _idValidation.CheckIfIdExists(model))
 			{
 				await _dbPostHandlers.DBPostHandler(model);
 			}

@@ -31,7 +31,20 @@ namespace LogicLayer.APIGetLogic
 		public async Task<CardModel> GetCardById(int id)
 		{
 			var data = await _dbGetHandlers.GetCardByIdFromRepository(id);
-			return data;
+			//Fake model for validation purposes. Because of CardModel, the other handlers would not accept a null return
+			if (data == null)
+			{
+				data = new CardModel
+				{
+					id = 0,
+					name = ""
+				};
+				return data;
+			} else
+			{
+				return data;
+			}
+
 		}
 	}
 }
