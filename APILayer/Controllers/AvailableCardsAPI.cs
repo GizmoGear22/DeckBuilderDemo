@@ -6,6 +6,7 @@ using LogicLayer.APIGetLogic;
 using LogicLayer.APIPostLogic;
 using System.Reflection;
 using Microsoft.Identity.Client;
+using LogicLayer.APIDeleteLogic;
 
 namespace APILayer.Controllers
 {
@@ -15,10 +16,12 @@ namespace APILayer.Controllers
 	{
 		private readonly IAPIGetHandlers _apiGetHandler;
 		private readonly IAPIPostHandler _postHandler;
-		public AvailableCardsAPI(IAPIGetHandlers apiGetHandlers, IAPIPostHandler postHandler) 
+		private readonly IAPIDeleteHandlers _deleteHandler;
+		public AvailableCardsAPI(IAPIGetHandlers apiGetHandlers, IAPIPostHandler postHandler, IAPIDeleteHandlers deleteHandler) 
 		{
 			_apiGetHandler = apiGetHandlers;
 			_postHandler = postHandler;
+			_deleteHandler = deleteHandler;
 
 		}
 
@@ -75,10 +78,11 @@ namespace APILayer.Controllers
 		//DELETE: Delete card
 		[Route("DeleteCard")]
 		[HttpDelete]
-		public async Task<IActionResult> DeleteCard(int id)
+		public async Task<IActionResult> DeleteCard(CardModel model)
 		{
-			var card = GetCardById(id);
-			throw new NotImplementedException();
+			var card = await _apiGetHandler.GetCardById(model.id);
+			await _deleteHandler.DeleteCard(card);
+			return Ok(model);
 
 		}
 	}

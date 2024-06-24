@@ -10,5 +10,6 @@ namespace DBAccess.DBControllers
 		Task<List<CardModel>> SeeAllCardOptions();
 		Task<List<CardModel>> SeeCardOptionsByType(CardType param);
 		Task<CardModel> SeeCardById(int id);
+		Task<int> DeleteCardFromDB(CardModel model);
 	}
 }

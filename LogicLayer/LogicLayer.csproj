@@ -72,10 +72,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="APIDeleteLogic\APIDeleteHandlers.cs" />
+    <Compile Include="APIDeleteLogic\IAPIDeleteHandlers.cs" />
     <Compile Include="APIGetLogic\APIGetHandlers.cs" />
     <Compile Include="APIGetLogic\IAPIGetHandlers.cs" />
     <Compile Include="APIPostLogic\APIPostHandler.cs" />
     <Compile Include="APIPostLogic\IAPIPostHandler.cs" />
+    <Compile Include="DBDeleteLogic\DBDeleteHandler.cs" />
+    <Compile Include="DBDeleteLogic\IDBDeleteHandler.cs" />
     <Compile Include="DBGetLogic\DBGetHandlers.cs" />
     <Compile Include="DBGetLogic\IDBGetHandlers.cs" />
     <Compile Include="DBPostLogic\DBPostHandlers.cs" />
@@ -93,7 +96,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DBDeleteLogic\" />
     <Folder Include="Utility\" />
   </ItemGroup>
   <ItemGroup>

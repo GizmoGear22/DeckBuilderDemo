@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Models;
 using NPOI.SS.Formula.Functions;
 using Dapper;
+using System.Security;
 
 namespace DBAccess.DBControllers
 {
@@ -32,7 +33,6 @@ namespace DBAccess.DBControllers
 				Console.WriteLine(ex.Message);
 				throw;
 			}
-
 		}
 
 		public async Task<List<CardModel>> SeeCardOptionsByType(CardType param)
@@ -62,6 +62,14 @@ namespace DBAccess.DBControllers
 				attack = model.attack,
 				defense = model.defense
 			};
+			var data = await _connectionHandler.DBPostConnectionHandler(sql, param);
+			return data;
+		}
+
+		public async Task<int> DeleteCardFromDB(CardModel model)
+		{
+			string sql = "DELETE FROM [dbo].[AvailableCards] WHERE [id] = @id";
+			var param = new {id = model.id};
 			var data = await _connectionHandler.DBPostConnectionHandler(sql, param);
 			return data;
 		}

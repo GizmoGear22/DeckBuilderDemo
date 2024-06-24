@@ -37,7 +37,6 @@ namespace DBAccess
 			}
 
 		}
-
 		public async Task<List<T>> DBGetConnectionHandlerByType<T>(string sqlString, CardType param)
 		{
 			using (var connection = new SqlConnection(CnnVal()))
