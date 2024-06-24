@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APIDeleteLogic\APIDeleteHandlers.cs" />
     <Compile Include="APIGetLogic\APIGetHandlers.cs" />
     <Compile Include="APIGetLogic\IAPIGetHandlers.cs" />
     <Compile Include="APIPostLogic\APIPostHandler.cs" />
@@ -92,6 +93,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DBDeleteLogic\" />
     <Folder Include="Utility\" />
   </ItemGroup>
   <ItemGroup>

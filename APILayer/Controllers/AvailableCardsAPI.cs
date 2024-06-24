@@ -5,6 +5,7 @@ using LogicLayer;
 using LogicLayer.APIGetLogic;
 using LogicLayer.APIPostLogic;
 using System.Reflection;
+using Microsoft.Identity.Client;
 
 namespace APILayer.Controllers
 {
@@ -71,5 +72,14 @@ namespace APILayer.Controllers
 			return Ok(model);	
 		}
 
+		//DELETE: Delete card
+		[Route("DeleteCard")]
+		[HttpDelete]
+		public async Task<IActionResult> DeleteCard(int id)
+		{
+			var card = GetCardById(id);
+			throw new NotImplementedException();
+
+		}
 	}
 }
