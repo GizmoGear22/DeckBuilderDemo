@@ -51,10 +51,17 @@ namespace DBAccess
 		{
 			using (var connection = new SqlConnection(CnnVal()))
 			{
-				var parameter = new { id = Id };
-				var data = await connection.QueryAsync(sqlString, parameter);
-				return data.FirstOrDefault();
-			}      
+				try
+				{
+					var parameter = new { id = Id };
+					var data = await connection.QueryFirstOrDefaultAsync<T>(sqlString, parameter);
+					return data;
+				}
+				catch (Exception ex)
+				{
+					throw new Exception(ex.Message);
+				}
+			}
 		}
 
 		public async Task<int> DBPostConnectionHandler(string sqlString, object param)

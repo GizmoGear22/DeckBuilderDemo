@@ -32,13 +32,7 @@ namespace APILayer.Controllers
 		public async Task<IEnumerable<CardModel>> GetAllCards()
 		{
 			var getData = await _apiGetHandler.GetAllCards();
-			foreach (var card in getData) 
-			{
-				if (card.type == CardType.Machine)
-				{
-					card.type.ToString();
-				}
-			}
+
 			return getData.ToList();
 		}
 
@@ -57,7 +51,16 @@ namespace APILayer.Controllers
 		public async Task <CardModel> GetCardById(int id)
 		{
 			var getData = await _apiGetHandler.GetCardById(id);
-			return getData;
+			if (getData != null)
+			{
+				return getData;
+			}
+			else
+			{
+				throw new Exception("Model cannot be null");
+			}
+
+
 		}
 
 		// POST: Post new cards to Database
@@ -65,14 +68,19 @@ namespace APILayer.Controllers
 		[HttpPost]
 		public async Task<IActionResult> PostNewCard([FromBody] CardModel model)
 		{
-			if (Enum.TryParse(typeof(CardType), model.inputType, out var type))
+			if (ModelState.IsValid)
 			{
-				model.type = (CardType)type;
+				if (Enum.TryParse(typeof(CardType), model.inputType, out var type))
+				{
+					model.type = (CardType)type;
+				}
+
+				await _postHandler.PostNewCard(model);
+				return Ok(model);
 			}
+			else { throw new Exception("Please use a proper model"); }
 
-			await _postHandler.PostNewCard(model);
 
-			return Ok(model);	
 		}
 
 		//DELETE: Delete card
