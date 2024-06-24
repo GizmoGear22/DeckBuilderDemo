@@ -29,9 +29,8 @@ namespace LogicLayer.Validation.CheckName
 					validationMessage(message);
 					return false;
 				}
-				else
-				{ return true; }
 			}
+			return true;
 
 		}
 	}
