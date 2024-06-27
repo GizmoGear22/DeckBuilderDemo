@@ -6,28 +6,36 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xunit;
+using LogicLayer.Validation.CheckName;
+using Moq;
+using LogicLayer.APIGetLogic;
+using Models;
 
 namespace UnitTests.LogicLayerTests.Validations
 {
 	public class RegexNameValidationsTest
 	{
-		[Theory]
-		[InlineData("Machine Rifle", true)]
-		[InlineData("12 Monkeys", true)]
-		[InlineData("@Run", false)]
-		[InlineData("Heaven's Gate", true)]
-		[InlineData("Run 4 Life", true)]
-		[InlineData("Deep@you", false)]
-		public void MatchName(string name, bool expected)
+		[Fact]
+		public async Task MatchNameTest()
 		{
 			//arrange
-			string pattern = @"^[A-Z0-9][A-Za-z0-9' ]*$";
+			var sample = new SampleCardLists();
+			var sampleList = sample.SampleList();
+			var mock = new Mock<IDBGetHandlers>();
+			mock.Setup(x => x.GetAllCardsFromRepository()).ReturnsAsync(new List<CardModel>(sampleList));
+
+			CheckIfNameExists checkName = new CheckIfNameExists(mock.Object);
+
+			CardModel tempModel = new CardModel
+			{
+				name = "Garbage"
+			};
 
 			//act
-			var result = Regex.IsMatch(name, pattern);
+			bool result = await checkName.CheckName(tempModel);
 
 			//assert
-			Assert.Equal(expected, result);
+			Assert.False(result);
 		}
 	}
 }

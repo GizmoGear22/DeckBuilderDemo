@@ -9,6 +9,7 @@ using Models;
 using LogicLayer.APIPostLogic;
 using System.Security.Cryptography.X509Certificates;
 using LogicLayer.Validation;
+using LogicLayer.Validation.CheckName;
 
 namespace UnitTests.LogicLayerTests
 {
@@ -16,10 +17,12 @@ namespace UnitTests.LogicLayerTests
 	{
 		private readonly Mock<IDBPostHandlers> _postHandlers;
 		private readonly Mock<IIdValidation> _idValidation;
+		private readonly Mock<ICheckIfNameExists> _checkIfNameExists;
 		public APIPostHandlerTests() 
 		{
 			_postHandlers = new Mock<IDBPostHandlers>();
 			_idValidation = new Mock<IIdValidation>();
+			_checkIfNameExists = new Mock<ICheckIfNameExists>();
 		}
 		[Fact]
 		public void APIPostHandlerTest()
@@ -32,7 +35,7 @@ namespace UnitTests.LogicLayerTests
 			};
 
 			_idValidation.Setup(x => x.CheckIfIdExists(model)).ReturnsAsync(true);
-			var handler = new APIPostHandler(_postHandlers.Object, _idValidation.Object);
+			var handler = new APIPostHandler(_postHandlers.Object, _idValidation.Object, _checkIfNameExists.Object);
 
 			//act
 			var result = handler.PostNewCard(model);

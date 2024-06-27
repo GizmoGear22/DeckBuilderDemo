@@ -24,7 +24,7 @@ namespace LogicLayer.Validation.CheckName
 			var cards = await _dBGetHandlers.GetAllCardsFromRepository();
 			foreach (var card in cards)
 			{
-				if (Regex.IsMatch(card.name, model.name))
+				if (!Regex.IsMatch(card.name, model.name))
 				{
 					string message = "Please choose a different name";
 					validationMessage(message);
