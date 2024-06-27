@@ -16,7 +16,7 @@ namespace UnitTests.LogicLayerTests.Validations
 		[Theory]
 		[InlineData(1, "Machine Rifle")]
 		[InlineData(2, "Oil Flask")]
-		public void CheckIDTest(int id, string name)
+		public async Task CheckIDTest(int id, string name)
 		{
 			//arrange
 			CardModel card = new CardModel
@@ -30,7 +30,7 @@ namespace UnitTests.LogicLayerTests.Validations
 			IdValidation validate = new IdValidation(mock.Object);
 			
 			//act
-			var result = validate.CheckId(card);
+			var result = await validate.CheckId(card);
 
 			//assert
 			Assert.True(result);
@@ -38,7 +38,7 @@ namespace UnitTests.LogicLayerTests.Validations
 
 		[Theory]
 		[InlineData(-1, "Obelisk")]
-		public void CheckIDFalseTest(int id, string name)
+		public async Task CheckIDFalseTest(int id, string name)
 		{
 			CardModel card = new CardModel
 			{
@@ -51,9 +51,9 @@ namespace UnitTests.LogicLayerTests.Validations
 			IdValidation validate = new IdValidation(mock.Object);
 
 			//act
-
+			var result = await validate.CheckId(card);
 			//assert
-			Assert.Throws<Exception>(() => validate.CheckId(card));
+			Assert.False(result);
 		}
 	}
 }

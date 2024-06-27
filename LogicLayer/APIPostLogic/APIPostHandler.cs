@@ -24,13 +24,13 @@ namespace LogicLayer.APIPostLogic
 
 		public async Task PostNewCard(CardModel model)
 		{
-			var checkifExists = _idValidation.CheckIfIdExists(model);
-			var checkId = _idValidation.CheckId(model);
-			var checkName = _checkIfNameExists.CheckName(model);
-			var checkNameCharacters = _checkIfNameExists.CheckNameCharacters(model);
+			var checkifExists = await _idValidation.CheckIfIdExists(model);
+			var checkId = await _idValidation.CheckId(model);
+			var checkName = await _checkIfNameExists.CheckName(model);
+			var checkNameCharacters = await _checkIfNameExists.CheckNameCharacters(model);
 
 
-			if (await checkifExists && checkId && await checkName && checkNameCharacters)
+			if (checkifExists && checkId && checkName && checkNameCharacters)
 			{
 				await _dbPostHandlers.DBPostHandler(model);
 			}

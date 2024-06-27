@@ -19,13 +19,13 @@ namespace LogicLayer.Validation
 		}
 		ValidationDelegates.ValidationMessageDelegate validationMessage = DelegateValidationMessage.ValidationMessage;
 
-		public bool CheckId(CardModel model)
+		public async Task<bool> CheckId(CardModel model)
 		{
 
 			if (model.id <= 0)
 			{
 				string message = "Can't have ID Number less than or equal to 0";
-				validationMessage(message);
+				await validationMessage(message);
 				return false;
 			}
 			else
@@ -40,7 +40,7 @@ namespace LogicLayer.Validation
 			if (retrievedModel.id != 0)
 			{
 				string message = "ID already exists";
-				validationMessage(message);
+				await validationMessage(message);
 				return false;
 
 			}

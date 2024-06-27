@@ -38,14 +38,14 @@ namespace LogicLayer.Validation.CheckName
 
 		}
 
-		public bool CheckNameCharacters(CardModel model)
+		public async Task<bool> CheckNameCharacters(CardModel model)
 		{
 			if (RegexDefinitions.CheckNameCharacters(model.name))
 			{ return true; }
 			else 
 			{
 				string message = "Please choose a different name";
-				validationMessage(message);
+				await validationMessage(message);
 				return false; }
 		}
 	}
