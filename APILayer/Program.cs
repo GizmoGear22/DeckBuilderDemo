@@ -6,6 +6,7 @@ using LogicLayer.APIGetLogic;
 using LogicLayer.APIPostLogic;
 using LogicLayer.DBDeleteLogic;
 using LogicLayer.Validation;
+using LogicLayer.Validation.CheckName;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,7 @@ builder.Services.AddTransient<IAPIPostHandler, APIPostHandler>();
 builder.Services.AddTransient<IIdValidation, IdValidation>();
 builder.Services.AddTransient<IDBDeleteHandler, DBDeleteHandler>();
 builder.Services.AddTransient<IAPIDeleteHandlers, APIDeleteHandlers>();	
+builder.Services.AddTransient<ICheckIfNameExists, CheckIfNameExists>();
 
 //builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 

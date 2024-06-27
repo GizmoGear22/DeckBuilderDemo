@@ -59,8 +59,6 @@ namespace APILayer.Controllers
 			{
 				throw new Exception("Model cannot be null");
 			}
-
-
 		}
 
 		// POST: Post new cards to Database
@@ -70,15 +68,18 @@ namespace APILayer.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				if (Enum.TryParse(typeof(CardType), model.inputType, out var type))
-				{
-					model.type = (CardType)type;
-				}
-
-				await _postHandler.PostNewCard(model);
-				return Ok(model);
+				return BadRequest("Model must be valid");
 			}
-			else { throw new Exception("Please use a proper model"); }
+			if (model == null)
+			{
+				return BadRequest("Model must not be null");
+			}
+			if (Enum.TryParse(typeof(CardType), model.inputType, out var type))
+			{
+				model.type = (CardType)type;
+			}
+			await _postHandler.PostNewCard(model);
+			return Ok(model);
 
 
 		}
@@ -88,6 +89,14 @@ namespace APILayer.Controllers
 		[HttpDelete]
 		public async Task<IActionResult> DeleteCard(CardModel model)
 		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest("Item must be valid");
+			}
+			if (model == null)
+			{
+				return BadRequest("Item must not be null");
+			}
 			var card = await _apiGetHandler.GetCardById(model.id);
 			await _deleteHandler.DeleteCard(card);
 			return Ok(model);
