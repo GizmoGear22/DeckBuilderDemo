@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -26,12 +27,14 @@ namespace LogicLayer.Validation.CheckName
 			{
 				if (!Regex.IsMatch(card.name, model.name))
 				{
-					string message = "Please choose a different name";
-					validationMessage(message);
+					continue;
+				}
+				else
+				{
 					return false;
 				}
 			}
-			return true;
+			return true;	
 
 		}
 

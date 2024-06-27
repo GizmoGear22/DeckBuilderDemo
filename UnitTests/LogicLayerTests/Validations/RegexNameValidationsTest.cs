@@ -35,6 +35,28 @@ namespace UnitTests.LogicLayerTests.Validations
 			bool result = await checkName.CheckName(tempModel);
 
 			//assert
+			Assert.True(result);
+		}
+		[Fact]
+		public async Task MatchNameFalseTest()
+		{
+			//arrange
+			var sample = new SampleCardLists();
+			var sampleList = sample.SampleList();
+			var mock = new Mock<IDBGetHandlers>();
+			mock.Setup(x => x.GetAllCardsFromRepository()).ReturnsAsync(new List<CardModel>(sampleList));
+
+			CheckIfNameExists checkName = new CheckIfNameExists(mock.Object);
+
+			CardModel tempModel = new CardModel
+			{
+				name = "spring rifle"
+			};
+
+			//act
+			bool result = await checkName.CheckName(tempModel);
+
+			//assert
 			Assert.False(result);
 		}
 	}

@@ -42,6 +42,7 @@ namespace LogicLayer.Validation
 				string message = "ID already exists";
 				validationMessage(message);
 				return false;
+
 			}
 			else
 			{
