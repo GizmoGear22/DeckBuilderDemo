@@ -13,7 +13,7 @@ using Models;
 
 namespace UnitTests.LogicLayerTests.Validations
 {
-	public class RegexNameValidationsTest
+	public class CheckNameCharactersTests
 	{
 		[Fact]
 		public async Task MatchNameTest()
