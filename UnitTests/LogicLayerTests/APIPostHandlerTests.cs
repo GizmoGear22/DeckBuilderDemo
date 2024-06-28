@@ -34,11 +34,6 @@ namespace UnitTests.LogicLayerTests
 				name = "Machine Rifle"
 			};
 
-			_idValidation.Setup(x => x.CheckIfIdExists(model)).ReturnsAsync(true);
-			_idValidation.Setup(x => x.CheckId(model)).ReturnsAsync(true);
-			_postHandlers.Setup(x => x.DBPostHandler(model));
-			_checkIfNameExists.Setup(x => x.CheckNameCharacters(model)).ReturnsAsync(true);
-			_checkIfNameExists.Setup(x => x.CheckName(model)).ReturnsAsync(true);
 			var handler = new APIPostHandler(_postHandlers.Object, _idValidation.Object, _checkIfNameExists.Object);
 
 			//act

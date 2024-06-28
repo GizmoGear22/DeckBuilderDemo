@@ -11,7 +11,7 @@ namespace LogicLayer.Validation
 		public static Task ValidationMessage(string message)
 		{
 			Console.WriteLine(message);
-			throw new Exception(message);
+			return Task.CompletedTask;
 		}
 	}
 }

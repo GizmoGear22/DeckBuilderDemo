@@ -32,7 +32,7 @@ namespace UnitTests.LogicLayerTests.Validations
 			};
 
 			//act
-			bool result = await checkName.CheckName(tempModel);
+			var (result, message) = await checkName.CheckName(tempModel);
 
 			//assert
 			Assert.True(result);
@@ -54,7 +54,7 @@ namespace UnitTests.LogicLayerTests.Validations
 			};
 
 			//act
-			bool result = await checkName.CheckName(tempModel);
+			var (result, message) = await checkName.CheckName(tempModel);
 
 			//assert
 			Assert.False(result);

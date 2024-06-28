@@ -20,7 +20,7 @@ namespace LogicLayer.Validation.CheckName
 		}
 
 		ValidationDelegates.ValidationMessageDelegate validationMessage = DelegateValidationMessage.ValidationMessage;
-		public async Task<bool> CheckName(CardModel model)
+		public async Task<(bool, string)> CheckName(CardModel model)
 		{
 			var cards = await _dBGetHandlers.GetAllCardsFromRepository();
 			foreach (var card in cards)
@@ -31,22 +31,24 @@ namespace LogicLayer.Validation.CheckName
 				}
 				else
 				{
-					return false;
+					string message = "Model name already exists.";
+					await validationMessage(message);
+					return (false, message);
 				}
 			}
-			return true;	
+			return (true, null);	
 
 		}
 
-		public async Task<bool> CheckNameCharacters(CardModel model)
+		public async Task<(bool, string)> CheckNameCharacters(CardModel model)
 		{
 			if (RegexDefinitions.CheckNameCharacters(model.name))
-			{ return true; }
+			{ return (true, null); }
 			else 
 			{
 				string message = "Please choose a different name";
 				await validationMessage(message);
-				return false; }
+				return (false, message); }
 		}
 	}
 }

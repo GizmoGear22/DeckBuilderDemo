@@ -5,7 +5,7 @@ namespace LogicLayer.Validation
 {
 	public interface IIdValidation
 	{
-		Task<bool> CheckId(CardModel model);
-		Task<bool> CheckIfIdExists(CardModel model);
+		Task<(bool, string)> CheckId(CardModel model);
+		Task<(bool, string)> CheckIfIdExists(CardModel model);
 	}
 }

@@ -29,9 +29,10 @@ namespace UnitTests.LogicLayerTests.Validations
 
 			//act
 			IdValidation id = new IdValidation(mock.Object);
+			var (result, message) = await id.CheckIfIdExists(tempModel);
 
 			//assert
-			await Assert.ThrowsAsync<Exception>(() => id.CheckIfIdExists(tempModel));
+			Assert.False(result, message);
 		}
 
 

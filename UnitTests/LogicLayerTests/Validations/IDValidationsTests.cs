@@ -30,7 +30,7 @@ namespace UnitTests.LogicLayerTests.Validations
 			IdValidation validate = new IdValidation(mock.Object);
 			
 			//act
-			var result = await validate.CheckId(card);
+			var (result, message) = await validate.CheckId(card);
 
 			//assert
 			Assert.True(result);
@@ -51,7 +51,7 @@ namespace UnitTests.LogicLayerTests.Validations
 			IdValidation validate = new IdValidation(mock.Object);
 
 			//act
-			var result = await validate.CheckId(card);
+			var (result, message) = await validate.CheckId(card);
 			//assert
 			Assert.False(result);
 		}
