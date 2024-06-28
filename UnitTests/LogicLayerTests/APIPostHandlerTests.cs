@@ -25,7 +25,7 @@ namespace UnitTests.LogicLayerTests
 			_checkIfNameExists = new Mock<ICheckIfNameExists>();
 		}
 		[Fact]
-		public void APIPostHandlerTest()
+		public async Task APIPostHandlerTest()
 		{
 			//arrange
 			var model = new CardModel
@@ -37,6 +37,10 @@ namespace UnitTests.LogicLayerTests
 			var handler = new APIPostHandler(_postHandlers.Object, _idValidation.Object, _checkIfNameExists.Object);
 
 			//act
+			_idValidation.Setup(x => x.CheckId(model)).ReturnsAsync((true, null));
+			_idValidation.Setup(x => x.CheckIfIdExists(model)).ReturnsAsync((true, null));
+			_checkIfNameExists.Setup(x => x.CheckName(model)).ReturnsAsync((true, null));
+			_checkIfNameExists.Setup(x => x.CheckNameCharacters(model)).ReturnsAsync((true, null));
 			var result = handler.PostNewCard(model);
 
 			//assert
