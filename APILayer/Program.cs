@@ -30,7 +30,15 @@ builder.Services.AddTransient<IDBDeleteHandler, DBDeleteHandler>();
 builder.Services.AddTransient<IAPIDeleteHandlers, APIDeleteHandlers>();	
 builder.Services.AddTransient<ICheckIfNameExists, CheckIfNameExists>();
 
-//builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+//Adding CORS
+builder.Services.AddCors(options => options.AddPolicy("AllowLocalhostAnyPort", builder =>
+{
+	builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+	.AllowAnyHeader()
+	.AllowAnyMethod()
+	.AllowCredentials();
+}
+));
 
 var app = builder.Build();
 
@@ -46,5 +54,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("AllowLocalhostAnyPort");
 
 app.Run();

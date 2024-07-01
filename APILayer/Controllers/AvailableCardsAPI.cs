@@ -66,7 +66,7 @@ namespace APILayer.Controllers
 		[HttpPost]
 		public async Task<IActionResult> PostNewCard([FromBody] CardModel model)
 		{
-			if (ModelState.IsValid)
+			if (!ModelState.IsValid)
 			{
 				return BadRequest("Model must be valid");
 			}
